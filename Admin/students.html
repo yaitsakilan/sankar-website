@@ -2,53 +2,50 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Student Management - Sivani Coaching Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory - Sivani Coaching Center</title>
 
     <!-- Bootstrap -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Font -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-
-        *{
-            font-family:'Poppins',sans-serif;
+        * {
+            font-family: 'Poppins', sans-serif;
         }
 
-        body{
-            background:#f4f7fe;
+        body {
+            background: #f4f7fe;
         }
 
         /* HEADER */
-
-        .header-section{
-            background:linear-gradient(135deg,#1b2a52,#29417d);
-            color:white;
-            text-align:center;
-            padding:45px 20px;
-            border-bottom-left-radius:30px;
-            border-bottom-right-radius:30px;
-            box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+        .header-section {
+            background: linear-gradient(135deg, #1b2a52, #29417d);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .back-home-btn{
+        .header-section h1 {
+            font-size: 42px;
+            font-weight: 700;
+        }
+
+        .header-section p {
+            font-size: 17px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .back-home-btn {
             position: absolute;
             top: 20px;
             left: 20px;
@@ -68,518 +65,843 @@
             transition: 0.3s;
         }
 
-        .back-home-btn:hover{
+        .back-home-btn:hover {
             background: white;
             color: #1b2a52;
             transform: translateX(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .header-section h1{
-            font-size:42px;
-            font-weight:700;
+        .btn-new-admission {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
 
-        .header-section p{
-            font-size:17px;
-            margin-top:10px;
-            opacity:0.9;
+        .btn-new-admission:hover {
+            background: #218838;
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
         }
 
         /* MAIN BOX */
-
-        .main-box{
-            background:white;
-            margin-top:40px;
-            padding:35px;
-            border-radius:25px;
-            box-shadow:0px 10px 30px rgba(0,0,0,0.08);
+        .main-box {
+            background: white;
+            margin-top: 40px;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .section-title{
-            color:#1b2a52;
-            font-weight:700;
-            margin-bottom:25px;
-        }
-
-        /* FORM */
-
-        .form-control{
-            height:55px;
-            border-radius:12px;
-            border:1px solid #dcdcdc;
-            padding-left:15px;
-        }
-
-        .form-control:focus{
-            border-color:#0d6efd;
-            box-shadow:none;
-        }
-
-        /* BUTTONS */
-
-        .btn-main{
-            height:55px;
-            border:none;
-            border-radius:12px;
-            font-weight:600;
-            transition:0.3s;
-        }
-
-        .btn-add{
-            background:#0d6efd;
-            color:white;
-        }
-
-        .btn-add:hover{
-            background:#084298;
+        .section-title {
+            color: #1b2a52;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* TABLE */
-
-        .table-box{
-            margin-top:35px;
-            border-radius:18px;
-            overflow:hidden;
+        .table-box {
+            margin-top: 20px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .table{
-            margin-bottom:0;
+        .table {
+            margin-bottom: 0;
         }
 
-        .table thead{
-            background:#1b2a52;
-            color:white;
+        .table thead {
+            background: #1b2a52;
+            color: white;
         }
 
-        .table th{
-            padding:18px;
-            text-align:center;
-            font-weight:600;
+        .table th {
+            padding: 18px;
+            text-align: center;
+            font-weight: 600;
         }
 
-        .table td{
-            text-align:center;
-            vertical-align:middle;
-            padding:15px;
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 15px;
         }
 
-        .table tbody tr:hover{
-            background:#f4f8ff;
+        .table tbody tr:hover {
+            background: #f4f8ff;
+        }
+
+        .student-thumb {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #1b2a52;
+            background: #eef3ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #1b2a52;
+            font-size: 1.1rem;
         }
 
         /* ACTION BUTTONS */
-
-        .btn-update{
-            background:#ffc107;
-            color:black;
-            border:none;
-            border-radius:8px;
-            padding:8px 14px;
-            font-weight:600;
-            margin-right:5px;
+        .btn-profile {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: 600;
+            margin-right: 5px;
         }
 
-        .btn-update:hover{
-            background:#e0a800;
+        .btn-profile:hover {
+            background: #0b5ed7;
         }
 
-        .btn-delete{
-            background:#dc3545;
-            color:white;
-            border:none;
-            border-radius:8px;
-            padding:8px 14px;
-            font-weight:600;
+        .btn-update {
+            background: #ffc107;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: 600;
+            margin-right: 5px;
         }
 
-        .btn-delete:hover{
-            background:#bb2d3b;
+        .btn-update:hover {
+            background: #e0a800;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: 600;
+        }
+
+        .btn-delete:hover {
+            background: #bb2d3b;
+        }
+
+        /* MODALS & FORMS */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1b2a52, #29417d);
+            color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px 25px;
+        }
+
+        .modal-title {
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding: 30px 25px;
+        }
+
+        .form-section-title {
+            color: #1b2a52;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-bottom: 2px solid #eef3ff;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control, .form-select {
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid #dcdcdc;
+            padding-left: 15px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #1b2a52;
+            box-shadow: none;
+        }
+
+        textarea.form-control {
+            height: auto;
+            min-height: 80px;
+            padding-top: 12px;
+        }
+
+        .photo-preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* PROFILE VIEWER */
+        .profile-header-card {
+            background: linear-gradient(135deg, #f4f7fe, #eef3ff);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(27, 42, 82, 0.05);
+        }
+
+        .profile-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1b2a52;
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1b2a52;
+            margin-bottom: 4px;
+        }
+
+        .profile-class-badge {
+            display: inline-block;
+            background: #1b2a52;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .profile-detail-row {
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .profile-label {
+            font-weight: 600;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .profile-value {
+            color: #1b2a52;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-align: right;
         }
 
         /* FOOTER */
-
-        .footer{
-            text-align:center;
-            margin-top:50px;
-            padding:20px;
-            color:#555;
-            font-size:15px;
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #555;
+            font-size: 15px;
         }
-
     </style>
-
 </head>
 
 <body>
 
-<section class="header-section">
-
-    <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
-
-    <div class="container">
-
+    <!-- HEADER -->
+    <section class="header-section">
+        <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
+        <button class="btn-new-admission" onclick="openAddModal()">
+            <i class="fa-solid fa-plus"></i> New Admission
+        </button>
         <h1>
             <i class="fa-solid fa-user-graduate"></i>
-            Student Management
+            Student Directory
         </h1>
-
         <p>
-            Sivani Coaching Center Student Registration & Directory
+            Sivani Coaching Center Student Admissions & Registration Portal
         </p>
+    </section>
 
+    <!-- MAIN DIRECTORY TABLE -->
+    <div class="container">
+        <div class="main-box">
+            <h3 class="section-title">
+                <i class="fa-solid fa-users"></i>
+                Admitted Student Directory
+            </h3>
+
+            <!-- TABLE -->
+            <div class="table-box">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Class & Board</th>
+                                <th>WhatsApp</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTable">
+                            <tr>
+                                <td colspan="6">Loading Directory...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- BACK BUTTON -->
+            <div class="text-center mt-5">
+                <a href="index.html" class="btn btn-dark btn-lg px-5 py-3 rounded-pill">
+                    <i class="fa-solid fa-house me-2"></i>
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
     </div>
 
-</section>
-
-<!-- MAIN -->
-
-<div class="container">
-
-    <div class="main-box">
-
-        <h3 class="section-title">
-
-            <i class="fa-solid fa-user-plus"></i>
-
-            Add Student Details
-
-        </h3>
-
-        <!-- FORM -->
-
-        <div class="row g-3">
-
-            <div class="col-md-2">
-
-                <input type="text"
-                       id="studentId"
-                       class="form-control"
-                       placeholder="Student ID">
-
-            </div>
-
-            <div class="col-md-3">
-
-                <input type="text"
-                       id="studentName"
-                       class="form-control"
-                       placeholder="Student Name">
-
-            </div>
-
-            <div class="col-md-2">
-
-                <input type="text"
-                       id="studentClass"
-                       class="form-control"
-                       placeholder="Class">
-
-            </div>
-
-            <div class="col-md-3">
-
-                <input type="text"
-                       id="studentPhone"
-                       class="form-control"
-                       placeholder="Phone Number">
-
-            </div>
-
-            <div class="col-md-2">
-
-                <button class="btn-main btn-add w-100"
-                        id="addBtn"
-                        onclick="addStudent()">
-
-                    Add Student
-
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- TABLE -->
-
-        <div class="table-box">
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Class</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="studentTable">
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- BUTTONS -->
-
-        <div class="text-center mt-5">
-
-            <a href="index.html" class="btn btn-dark btn-lg px-5 py-3 rounded-pill">
-                <i class="fa-solid fa-house me-2"></i>
-                Back to Dashboard
-            </a>
-
-        </div>
-
+    <!-- FOOTER -->
+    <div class="footer">
+        © 2026 Tuition Center Management System
     </div>
 
-</div>
+    <!-- ========================================================= -->
+    <!-- 1. NEW REGISTRATION & UPDATE MODAL -->
+    <!-- ========================================================= -->
+    <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentModalLabel"><i class="fa-solid fa-user-plus me-2"></i>New Student Admission</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="studentForm" onsubmit="saveStudent(event)">
+                        <!-- Photo Upload Block -->
+                        <div class="photo-preview-container">
+                            <div id="photoPlaceholder" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1b2a52; display: flex; align-items: center; justify-content: center; background: #eef3ff; color: #1b2a52; font-size: 2.5rem; margin-bottom: 10px;">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <img id="photoPreview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #1b2a52; display: none; margin-bottom: 10px;">
+                            <input type="file" id="studentPhoto" accept="image/*" class="form-control form-control-sm" style="max-width: 200px;" onchange="previewPhoto(event)">
+                        </div>
 
-<!-- FOOTER -->
+                        <!-- Section 1: Personal Details -->
+                        <h6 class="form-section-title"><i class="fa-solid fa-circle-user me-2"></i>Personal Details</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Student ID *</label>
+                                <input type="text" id="studentId" class="form-control" placeholder="e.g. 1001" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label fw-semibold">Student Name *</label>
+                                <input type="text" id="studentName" class="form-control" placeholder="Enter Full Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Date of Birth *</label>
+                                <input type="date" id="studentDob" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Gender *</label>
+                                <select id="studentGender" class="form-select" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Board *</label>
+                                <select id="studentBoard" class="form-select" required>
+                                    <option value="State Board">State Board</option>
+                                    <option value="CBSE">CBSE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">School Name *</label>
+                                <input type="text" id="studentSchool" class="form-control" placeholder="Enter Current School Name" required>
+                            </div>
+                        </div>
 
-<div class="footer">
+                        <!-- Section 2: Academic & Fees -->
+                        <h6 class="form-section-title"><i class="fa-solid fa-graduation-cap me-2"></i>Academic & Fees</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Class Name *</label>
+                                <input type="text" id="studentClass" class="form-control" placeholder="e.g. 10" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Joining Date *</label>
+                                <input type="date" id="studentJoinDate" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Monthly Fees *</label>
+                                <input type="number" id="studentFees" class="form-control" placeholder="₹ Amount" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Advance Amount *</label>
+                                <input type="number" id="studentAdvance" class="form-control" placeholder="₹ Amount" required>
+                            </div>
+                        </div>
 
-    © 2026 Tuition Center Management System
+                        <!-- Section 3: Parent & Contact Details -->
+                        <h6 class="form-section-title"><i class="fa-solid fa-address-book me-2"></i>Parent & Contact Details</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Father's Name *</label>
+                                <input type="text" id="studentFatherName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Father's Occupation</label>
+                                <input type="text" id="studentFatherOcc" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Mother's Name *</label>
+                                <input type="text" id="studentMotherName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Mother's Occupation</label>
+                                <input type="text" id="studentMotherOcc" class="form-control">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">WhatsApp Number *</label>
+                                <input type="text" id="studentPhone" class="form-control" placeholder="10 Digit Mobile Number" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Address *</label>
+                                <textarea id="studentAddress" class="form-control" placeholder="Enter Full Address" required></textarea>
+                            </div>
+                        </div>
 
-</div>
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal" style="border-radius:10px;">Cancel</button>
+                            <button type="submit" id="saveBtn" class="btn btn-primary px-4 py-2" style="background:#1b2a52; border:none; border-radius:10px;">Save Details</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- SCRIPT -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
+    <!-- ========================================================= -->
+    <!-- 2. READ-ONLY PROFILE VIEWER MODAL -->
+    <!-- ========================================================= -->
+    <div class="modal fade" id="profileViewerModal" tabindex="-1" aria-labelledby="profileViewerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileViewerLabel"><i class="fa-solid fa-address-card me-2"></i>Student Profile Card</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="p-4">
+                        <!-- Top Header Profile Card -->
+                        <div class="profile-header-card">
+                            <div id="viewAvatarHolder" class="profile-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <img id="viewAvatarImg" class="profile-avatar" style="display:none;">
+                            <h4 class="profile-name" id="viewName">-</h4>
+                            <span class="profile-class-badge" id="viewClassBadge">Class -</span>
+                        </div>
 
-<script>
+                        <!-- Info Rows -->
+                        <h6 class="form-section-title fs-6 mb-2 mt-3"><i class="fa-solid fa-user-tag me-2"></i>Admission Metadata</h6>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Student ID</span>
+                            <span class="profile-value" id="viewId">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Board / Syllabus</span>
+                            <span class="profile-value" id="viewBoard">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">School Name</span>
+                            <span class="profile-value" id="viewSchool">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Joining Date</span>
+                            <span class="profile-value" id="viewJoinDate">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Date of Birth</span>
+                            <span class="profile-value" id="viewDob">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Gender</span>
+                            <span class="profile-value" id="viewGender">-</span>
+                        </div>
 
-let students = [];
-let editIndex = -1;
+                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-indian-rupee-sign me-2"></i>Financials</h6>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Monthly Fees</span>
+                            <span class="profile-value fw-bold text-success" id="viewFees">₹-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Advance Deposited</span>
+                            <span class="profile-value text-primary" id="viewAdvance">₹-</span>
+                        </div>
 
-loadStudents();
+                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-people-roof me-2"></i>Parent Details</h6>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Father's Name</span>
+                            <span class="profile-value" id="viewFatherName">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Father's Job</span>
+                            <span class="profile-value" id="viewFatherOcc">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Mother's Name</span>
+                            <span class="profile-value" id="viewMotherName">-</span>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">Mother's Job</span>
+                            <span class="profile-value" id="viewMotherOcc">-</span>
+                        </div>
 
+                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-map-location-dot me-2"></i>Contact Details</h6>
+                        <div class="profile-detail-row">
+                            <span class="profile-label">WhatsApp Contact</span>
+                            <span class="profile-value" id="viewPhone">-</span>
+                        </div>
+                        <div class="profile-detail-row border-0 pb-0">
+                            <span class="profile-label align-self-start">Residence Address</span>
+                            <span class="profile-value" id="viewAddress" style="max-width: 60%; word-break: break-word;">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-3">
+                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal" style="border-radius:10px;">Close Profile Card</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-// ADD STUDENT
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
 
-async function addStudent(){
+    <script>
+        let students = [];
+        let currentPhotoBase64 = "";
+        let isUpdateMode = false;
+        let studentModalInstance = null;
+        let profileModalInstance = null;
 
-    let id =
-        document.getElementById("studentId").value;
+        document.addEventListener("DOMContentLoaded", () => {
+            studentModalInstance = new bootstrap.Modal(document.getElementById('studentModal'));
+            profileModalInstance = new bootstrap.Modal(document.getElementById('profileViewerModal'));
+            loadStudents();
+        });
 
-    let name =
-        document.getElementById("studentName").value;
-
-    let studentClass =
-        document.getElementById("studentClass").value;
-
-    let phone =
-        document.getElementById("studentPhone").value;
-
-    if(id=="" || name=="" || studentClass==""){
-
-        alert("Please Fill All Fields");
-
-        return;
-    }
-
-    const { error } = await _supabase
-        .from('students')
-        .insert([{
-            student_id: id,
-            name: name,
-            student_class: studentClass,
-            phone: phone
-        }]);
-
-    if (error) {
-        alert("Error adding student: " + error.message);
-        return;
-    }
-
-    loadStudents();
-
-    clearForm();
-
-}
-
-
-// LOAD STUDENTS
-
-async function loadStudents(){
-
-    let table =
-        document.getElementById("studentTable");
-
-    table.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
-
-    const { data, error } = await _supabase
-        .from('students')
-        .select('*')
-        .order('student_id', { ascending: true });
-
-    if (error) {
-        console.error("Error loading students:", error);
-        table.innerHTML = "<tr><td colspan='5' class='text-danger'>Error loading data</td></tr>";
-        return;
-    }
-
-    students = data;
-    table.innerHTML="";
-
-    students.forEach((student,index)=>{
-
-        table.innerHTML += `
-
-        <tr>
-
-            <td>${student.student_id}</td>
-
-            <td>${student.name}</td>
-
-            <td>${student.student_class}</td>
-
-            <td>${student.phone || ''}</td>
-
-            <td>
-
-                <button class="btn-update"
-                        onclick="editStudent(${index})">
-
-                    <i class="fa-solid fa-pen"></i>
-
-                    Update
-
-                </button>
-
-                <button class="btn-delete"
-                        onclick="deleteStudent(${index})">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                    Delete
-
-                </button>
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
-
-}
-
-
-// DELETE
-
-async function deleteStudent(index){
-
-    let student = students[index];
-    if(confirm(`Delete student ${student.name} (ID: ${student.student_id})?`)){
-
-        const { error } = await _supabase
-            .from('students')
-            .delete()
-            .eq('student_id', student.student_id);
-
-        if (error) {
-            alert("Error deleting student: " + error.message);
-            return;
+        // PHOTO UPLOAD TO BASE64
+        function previewPhoto(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    currentPhotoBase64 = e.target.result;
+                    document.getElementById("photoPreview").src = currentPhotoBase64;
+                    document.getElementById("photoPreview").style.display = "block";
+                    document.getElementById("photoPlaceholder").style.display = "none";
+                }
+                reader.readAsDataURL(file);
+            }
         }
 
-        loadStudents();
+        // LOAD DIRECTORY
+        async function loadStudents() {
+            let table = document.getElementById("studentTable");
+            table.innerHTML = "<tr><td colspan='6'>Loading Directory...</td></tr>";
 
-    }
+            const { data, error } = await _supabase
+                .from('students')
+                .select('*')
+                .order('student_id', { ascending: true });
 
-}
+            if (error) {
+                console.error("Error loading student directory:", error);
+                table.innerHTML = "<tr><td colspan='6' class='text-danger'>Error loading directory</td></tr>";
+                return;
+            }
 
+            students = data;
+            table.innerHTML = "";
 
-// EDIT
+            if (students.length === 0) {
+                table.innerHTML = "<tr><td colspan='6'>No student records found. Click 'New Admission' to add.</td></tr>";
+                return;
+            }
 
-function editStudent(index){
+            students.forEach((student, index) => {
+                let avatarHtml = "";
+                if (student.photo) {
+                    avatarHtml = `<img src="${student.photo}" class="student-thumb">`;
+                } else {
+                    avatarHtml = `<div class="student-thumb"><i class="fa-solid fa-user"></i></div>`;
+                }
 
-    editIndex = index;
-    let student = students[index];
+                table.innerHTML += `
+                <tr>
+                    <td>${avatarHtml}</td>
+                    <td>${student.student_id}</td>
+                    <td><strong style="color:#1b2a52;">${student.name}</strong></td>
+                    <td>Class ${student.student_class} (${student.board || 'State Board'})</td>
+                    <td>${student.phone || ''}</td>
+                    <td>
+                        <button class="btn-profile" onclick="viewProfile(${index})">
+                            <i class="fa-solid fa-eye"></i> View
+                        </button>
+                        <button class="btn-update" onclick="editStudent(${index})">
+                            <i class="fa-solid fa-pen"></i> Update
+                        </button>
+                        <button class="btn-delete" onclick="deleteStudent(${index})">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+                `;
+            });
+        }
 
-    document.getElementById("studentId").value = student.student_id;
-    document.getElementById("studentId").disabled = true;
+        // OPEN ADMISSION MODAL
+        function openAddModal() {
+            isUpdateMode = false;
+            document.getElementById("studentForm").reset();
+            document.getElementById("studentId").disabled = false;
+            document.getElementById("studentModalLabel").innerHTML = `<i class="fa-solid fa-user-plus me-2"></i>New Student Admission`;
+            
+            // Clear photo
+            currentPhotoBase64 = "";
+            document.getElementById("photoPreview").style.display = "none";
+            document.getElementById("photoPlaceholder").style.display = "flex";
 
-    document.getElementById("studentName").value = student.name;
+            // Set default dates
+            let today = new Date().toISOString().split('T')[0];
+            document.getElementById("studentJoinDate").value = today;
 
-    document.getElementById("studentClass").value = student.student_class;
+            studentModalInstance.show();
+        }
 
-    document.getElementById("studentPhone").value = student.phone || '';
+        // SAVE / UPDATE HANDLER
+        async function saveStudent(event) {
+            event.preventDefault();
 
-    document.getElementById("addBtn").innerHTML =
-        "Update Student";
+            let id = document.getElementById("studentId").value.trim();
+            let name = document.getElementById("studentName").value.trim();
+            let dob = document.getElementById("studentDob").value;
+            let gender = document.getElementById("studentGender").value;
+            let board = document.getElementById("studentBoard").value;
+            let school = document.getElementById("studentSchool").value.trim();
+            
+            let studentClass = document.getElementById("studentClass").value.trim();
+            let joinDate = document.getElementById("studentJoinDate").value;
+            let fees = Number(document.getElementById("studentFees").value);
+            let advance = Number(document.getElementById("studentAdvance").value);
+            
+            let fatherName = document.getElementById("studentFatherName").value.trim();
+            let fatherOcc = document.getElementById("studentFatherOcc").value.trim();
+            let motherName = document.getElementById("studentMotherName").value.trim();
+            let motherOcc = document.getElementById("studentMotherOcc").value.trim();
+            let phone = document.getElementById("studentPhone").value.trim();
+            let address = document.getElementById("studentAddress").value.trim();
 
-    document.getElementById("addBtn").onclick =
-        updateStudent;
+            if (!id || !name || !studentClass) {
+                alert("Please fill all required fields");
+                return;
+            }
 
-}
+            let studentData = {
+                student_id: id,
+                name: name,
+                dob: dob,
+                gender: gender,
+                board: board,
+                school_name: school,
+                student_class: studentClass,
+                joining_date: joinDate,
+                monthly_fees: fees,
+                advance_amount: advance,
+                father_name: fatherName,
+                father_occupation: fatherOcc,
+                mother_name: motherName,
+                mother_occupation: motherOcc,
+                phone: phone,
+                address: address,
+                photo: currentPhotoBase64
+            };
 
+            if (isUpdateMode) {
+                // Update
+                const { error } = await _supabase
+                    .from('students')
+                    .update(studentData)
+                    .eq('student_id', id);
 
-// UPDATE
+                if (error) {
+                    alert("Error updating student: " + error.message);
+                    return;
+                }
+            } else {
+                // Insert
+                const { error } = await _supabase
+                    .from('students')
+                    .insert([studentData]);
 
-async function updateStudent(){
+                if (error) {
+                    alert("Error adding student: " + error.message);
+                    return;
+                }
+            }
 
-    let id = document.getElementById("studentId").value;
-    let name = document.getElementById("studentName").value;
-    let studentClass = document.getElementById("studentClass").value;
-    let phone = document.getElementById("studentPhone").value;
+            studentModalInstance.hide();
+            loadStudents();
+        }
 
-    const { error } = await _supabase
-        .from('students')
-        .update({
-            name: name,
-            student_class: studentClass,
-            phone: phone
-        })
-        .eq('student_id', id);
+        // EDIT STUDENT (POPULATE MODAL)
+        function editStudent(index) {
+            isUpdateMode = true;
+            let student = students[index];
 
-    if (error) {
-        alert("Error updating student: " + error.message);
-        return;
-    }
+            document.getElementById("studentModalLabel").innerHTML = `<i class="fa-solid fa-user-pen me-2"></i>Update Student Info`;
 
-    loadStudents();
+            // Populate form
+            document.getElementById("studentId").value = student.student_id;
+            document.getElementById("studentId").disabled = true; // Cannot edit ID
 
-    clearForm();
+            document.getElementById("studentName").value = student.name;
+            document.getElementById("studentDob").value = student.dob || '';
+            document.getElementById("studentGender").value = student.gender || 'Male';
+            document.getElementById("studentBoard").value = student.board || 'State Board';
+            document.getElementById("studentSchool").value = student.school_name || '';
+            
+            document.getElementById("studentClass").value = student.student_class;
+            document.getElementById("studentJoinDate").value = student.joining_date || '';
+            document.getElementById("studentFees").value = student.monthly_fees || 0;
+            document.getElementById("studentAdvance").value = student.advance_amount || 0;
+            
+            document.getElementById("studentFatherName").value = student.father_name || '';
+            document.getElementById("studentFatherOcc").value = student.father_occupation || '';
+            document.getElementById("studentMotherName").value = student.mother_name || '';
+            document.getElementById("studentMotherOcc").value = student.mother_occupation || '';
+            document.getElementById("studentPhone").value = student.phone || '';
+            document.getElementById("studentAddress").value = student.address || '';
 
-    document.getElementById("studentId").disabled = false;
+            // Handle Photo
+            if (student.photo) {
+                document.getElementById("photoPreview").src = student.photo;
+                document.getElementById("photoPreview").style.display = "block";
+                document.getElementById("photoPlaceholder").style.display = "none";
+                currentPhotoBase64 = student.photo;
+            } else {
+                document.getElementById("photoPreview").style.display = "none";
+                document.getElementById("photoPlaceholder").style.display = "flex";
+                currentPhotoBase64 = "";
+            }
 
-    document.getElementById("addBtn").innerHTML =
-        "Add Student";
+            studentModalInstance.show();
+        }
 
-    document.getElementById("addBtn").onclick =
-        addStudent;
+        // VIEW DETAILED PROFILE CARD
+        function viewProfile(index) {
+            let student = students[index];
 
-}
+            // Setup profile header
+            document.getElementById("viewName").innerText = student.name;
+            document.getElementById("viewClassBadge").innerText = `Class ${student.student_class}`;
 
+            if (student.photo) {
+                document.getElementById("viewAvatarImg").src = student.photo;
+                document.getElementById("viewAvatarImg").style.display = "inline-flex";
+                document.getElementById("viewAvatarHolder").style.display = "none";
+            } else {
+                document.getElementById("viewAvatarImg").style.display = "none";
+                document.getElementById("viewAvatarHolder").style.display = "inline-flex";
+            }
 
-// CLEAR FORM
+            // Setup detail lists
+            document.getElementById("viewId").innerText = student.student_id;
+            document.getElementById("viewBoard").innerText = student.board || 'State Board';
+            document.getElementById("viewSchool").innerText = student.school_name || 'N/A';
+            document.getElementById("viewJoinDate").innerText = student.joining_date || 'N/A';
+            document.getElementById("viewDob").innerText = student.dob || 'N/A';
+            document.getElementById("viewGender").innerText = student.gender || 'Male';
+            
+            document.getElementById("viewFees").innerText = '₹' + (student.monthly_fees || 0);
+            document.getElementById("viewAdvance").innerText = '₹' + (student.advance_amount || 0);
+            
+            document.getElementById("viewFatherName").innerText = student.father_name || 'N/A';
+            document.getElementById("viewFatherOcc").innerText = student.father_occupation || 'N/A';
+            document.getElementById("viewMotherName").innerText = student.mother_name || 'N/A';
+            document.getElementById("viewMotherOcc").innerText = student.mother_occupation || 'N/A';
+            
+            document.getElementById("viewPhone").innerText = student.phone || 'N/A';
+            document.getElementById("viewAddress").innerText = student.address || 'N/A';
 
-function clearForm(){
+            profileModalInstance.show();
+        }
 
-    document.getElementById("studentId").value="";
-    document.getElementById("studentId").disabled = false;
+        // DELETE student
+        async function deleteStudent(index) {
+            let student = students[index];
+            if (confirm(`Are you absolutely sure you want to delete ${student.name} (ID: ${student.student_id})?\nThis will remove all their records.`)) {
+                const { error } = await _supabase
+                    .from('students')
+                    .delete()
+                    .eq('student_id', student.student_id);
 
-    document.getElementById("studentName").value="";
+                if (error) {
+                    alert("Error deleting student record: " + error.message);
+                    return;
+                }
 
-    document.getElementById("studentClass").value="";
+                loadStudents();
+            }
+        }
+    </script>
 
-    document.getElementById("studentPhone").value="";
-
-}
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
