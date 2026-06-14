@@ -71,6 +71,33 @@ border-radius:12px;
 font-weight:600;
 }
 
+.back-home-btn{
+position: absolute;
+top: 20px;
+left: 20px;
+background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(5px);
+color: white;
+border: 1px solid rgba(255, 255, 255, 0.25);
+padding: 8px 16px;
+border-radius: 30px;
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+z-index: 100;
+transition: 0.3s;
+}
+
+.back-home-btn:hover{
+background: white;
+color: #1b2a52;
+transform: translateX(-3px);
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
 </style>
 </head>
 
@@ -78,6 +105,7 @@ font-weight:600;
 
 <!-- HEADER -->
 <section class="header-section">
+<a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
 <h1><i class="fa-solid fa-calendar-check"></i> Attendance System</h1>
 <p>Sivani Coaching Center</p>
 </section>
