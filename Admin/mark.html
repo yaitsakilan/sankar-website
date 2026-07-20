@@ -22,366 +22,419 @@
 
     <!-- Google Font -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Excel -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
-
-        *{
-            font-family:'Poppins',sans-serif;
+        :root {
+            --primary: #1e3c72;
+            --primary-dark: #122548;
+            --accent: #3b82f6;
+            --bg-light: #f4f7fe;
+            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+            --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+            --sidebar-width: 280px;
         }
 
-        body{
-            background:#f4f7fe;
+        * {
+            font-family: 'Outfit', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.25s ease;
         }
 
-        .header-section{
-            background:linear-gradient(135deg,#1b2a52,#29417d);
-            color:white;
-            text-align:center;
-            padding:45px 20px;
-            border-bottom-left-radius:30px;
-            border-bottom-right-radius:30px;
-            position: relative;
+        body {
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
         }
 
-        .back-home-btn{
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 8px 16px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
+        /* SIDEBAR STYLE */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            padding: 40px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
             z-index: 100;
-            transition: 0.3s;
         }
 
-        .back-home-btn:hover{
-            background: white;
-            color: #1b2a52;
-            transform: translateX(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .sidebar-brand-box {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .main-box{
-            background:white;
-            margin-top:40px;
-            padding:35px;
-            border-radius:25px;
-            box-shadow:0px 10px 30px rgba(0,0,0,0.08);
+        .sidebar-logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-dark);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2.1rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
+        }
+
+        .sidebar-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #5c6f84;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            gap: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item i {
+            font-size: 1.15rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-item:hover {
+            color: var(--primary-dark);
+            background: #f1f4f9;
+        }
+
+        .sidebar-item.active {
+            background: #d1e4ff;
+            color: #0c4a9c;
+        }
+
+        /* MAIN CONTENT STYLE */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-desc {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        .dashboard-body {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            flex-grow: 1;
         }
 
         .form-control,
-        .form-select{
-            height:55px;
-            border-radius:12px;
+        .form-select {
+            height: 50px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
         }
 
-        .btn-main{
-            height:55px;
-            border:none;
-            border-radius:12px;
-            font-weight:600;
+        .btn-main {
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
         }
 
-        .btn-add{
-            background:#0d6efd;
-            color:white;
+        .btn-add {
+            background: #3b82f6;
+            color: white;
         }
 
-        .btn-download{
-            background:#198754;
-            color:white;
+        .btn-add:hover {
+            background: #2563eb;
         }
 
-        .table-box{
-            margin-top:35px;
-            overflow:auto;
-            border-radius:18px;
+        .btn-download {
+            background: #10b981;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
         }
 
-        .table thead{
-            background:#1b2a52;
-            color:white;
+        .btn-download:hover {
+            background: #059669;
+        }
+
+        .table-box {
+            margin-top: 35px;
+            overflow: auto;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead {
+            background: var(--primary);
+            color: white;
         }
 
         .table th,
-        .table td{
-            text-align:center;
-            padding:15px;
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 14px 16px;
         }
 
-        .btn-delete{
-            background:#dc3545;
-            color:white;
-            border:none;
-            padding:8px 14px;
-            border-radius:8px;
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
         }
 
-        .footer{
-            text-align:center;
-            padding:20px;
-            margin-top:40px;
+        .btn-delete:hover {
+            background: #bb2d3b;
         }
-
     </style>
 
 </head>
 
 <body>
 
-<section class="header-section">
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item active">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-    <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Student Marks Log</h1>
+            <p class="welcome-desc">Log term grades, test marks, custom subjects, and view class score averages.</p>
+        </section>
 
-    <div class="container">
+        <!-- Main Card List -->
+        <section class="dashboard-body">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h3 class="text-primary-dark fw-bold m-0"><i class="fa-solid fa-pen-to-square me-2"></i>Enter Student Marks</h3>
+                <button type="button" class="btn btn-sm btn-outline-primary fw-bold px-3 py-2" style="border-radius:10px;" onclick="openExamStructureModal()">
+                    <i class="fa-solid fa-gears me-2"></i>Configure School Exams
+                </button>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <select id="studentId" class="form-select" onchange="fillStudentData()"></select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="studentName" class="form-control" placeholder="Student Name" readonly>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" id="studentClass" class="form-control" placeholder="Class" readonly>
+                </div>
+                <div class="col-md-4">
+                    <select id="examType" class="form-select">
+                        <option value="">Select Exam</option>
+                        <option>Monthly Test</option>
+                        <option>Quarterly Exam</option>
+                        <option>Half Yearly Exam</option>
+                        <option>Annual Exam</option>
+                    </select>
+                </div>
+            </div>
 
-        <h1>
+            <!-- Group (11th & 12th subjects) -->
+            <div class="row g-3 mt-3" id="groupBox" style="display:none;">
+                <div class="col-md-4">
+                    <select id="groupSelect" class="form-select" onchange="loadSubjects()">
+                        <option value="">Select Group</option>
+                        <option value="Bio Maths">Bio Maths</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Commerce">Commerce</option>
+                    </select>
+                </div>
+            </div>
 
-            <i class="fa-solid fa-chart-column"></i>
+            <!-- Dynamic Subject Fields -->
+            <div class="row g-3 mt-3" id="subjectFields"></div>
 
-            Student Mark Management
+            <div class="mt-4">
+                <button class="btn-main btn-add w-100" onclick="addMark()">
+                    <i class="fa-solid fa-plus me-2"></i>Add Marks
+                </button>
+            </div>
 
-        </h1>
+            <!-- Table of Logged Marks -->
+            <div class="table-responsive table-box mt-5">
+                <table class="table table-hover align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Exam</th>
+                            <th>Marks</th>
+                            <th>Total</th>
+                            <th>Average</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="markTable"></tbody>
+                </table>
+            </div>
 
-        <p>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button class="btn-download btn-lg" onclick="downloadExcel()">
+                    <i class="fa-solid fa-file-excel me-2"></i>Download Excel
+                </button>
+            </div>
+        </section>
+    </main>
 
-            Monthly, Quarterly, Half Yearly & Annual Exam Marks
+    <!-- SCHOOL EXAMS CONFIGURATION MODAL -->
+    <div class="modal fade" id="examStructureModal" tabindex="-1" aria-labelledby="examStructureLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius:15px; overflow:hidden;">
+                <div class="modal-header" style="background: #1b2a52; color: white;">
+                    <h5 class="modal-title" id="examStructureLabel"><i class="fa-solid fa-gears me-2"></i>Configure School Exams</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Select School Name</label>
+                            <select id="configSchoolSelect" class="form-select" onchange="loadSchoolConfigUI()">
+                                <!-- Dynamically filled with active student schools -->
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Or Add New School</label>
+                            <div class="input-group">
+                                <input type="text" id="newSchoolNameInput" class="form-control" placeholder="Enter school name">
+                                <button class="btn btn-primary" type="button" onclick="addNewSchoolConfig()" style="background:#1b2a52; border:none;">Add</button>
+                            </div>
+                        </div>
+                    </div>
 
-        </p>
+                    <h6 class="fw-bold border-bottom pb-2 mb-3"><i class="fa-solid fa-list-check me-2"></i>Exams and Max Marks</h6>
+                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Exam Name</th>
+                                    <th>Max Total Marks per Subject</th>
+                                    <th style="width: 100px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="configExamsList">
+                                <!-- Dynamic rows of exam settings -->
+                            </tbody>
+                        </table>
+                    </div>
 
+                    <div class="d-flex justify-content-start mt-3">
+                        <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="addNewExamRow()">
+                            <i class="fa-solid fa-plus me-1"></i>Add Exam Row
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-3">
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" style="border-radius:10px;">Cancel</button>
+                    <button type="button" class="btn btn-primary px-4" onclick="saveActiveSchoolConfig()" style="background:#1b2a52; border:none; border-radius:10px;">Save Configuration</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-</section>
-
-<!-- MAIN -->
-
-<div class="container">
-
-    <div class="main-box">
-
-        <h3 class="mb-4">
-
-            <i class="fa-solid fa-pen"></i>
-
-            Enter Student Marks
-
-        </h3>
-
-        <!-- FORM -->
-
-        <div class="row g-3">
-
-            <!-- STUDENT -->
-
-            <div class="col-md-3">
-
-                <select id="studentId"
-                        class="form-select"
-                        onchange="fillStudentData()">
-
-                </select>
-
-            </div>
-
-            <!-- NAME -->
-
-            <div class="col-md-3">
-
-                <input type="text"
-                       id="studentName"
-                       class="form-control"
-                       placeholder="Student Name"
-                       readonly>
-
-            </div>
-
-            <!-- CLASS -->
-
-            <div class="col-md-2">
-
-                <input type="text"
-                       id="studentClass"
-                       class="form-control"
-                       placeholder="Class"
-                       readonly>
-
-            </div>
-
-            <!-- EXAM -->
-
-            <div class="col-md-4">
-
-                <select id="examType"
-                        class="form-select">
-
-                    <option value="">
-                        Select Exam
-                    </option>
-
-                    <option>
-                        Monthly Test
-                    </option>
-
-                    <option>
-                        Quarterly Exam
-                    </option>
-
-                    <option>
-                        Half Yearly Exam
-                    </option>
-
-                    <option>
-                        Annual Exam
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-        <!-- GROUP -->
-
-        <div class="row g-3 mt-3"
-             id="groupBox"
-             style="display:none;">
-
-            <div class="col-md-4">
-
-                <select id="groupSelect"
-                        class="form-select"
-                        onchange="loadSubjects()">
-
-                    <option value="">
-                        Select Group
-                    </option>
-
-                    <option value="Bio Maths">
-                        Bio Maths
-                    </option>
-
-                    <option value="Computer Science">
-                        Computer Science
-                    </option>
-
-                    <option value="Commerce">
-                        Commerce
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-        <!-- SUBJECTS -->
-
-        <div class="row g-3 mt-3"
-             id="subjectFields">
-
-        </div>
-
-        <!-- BUTTON -->
-
-        <div class="mt-4">
-
-            <button class="btn-main btn-add w-100"
-                    onclick="addMark()">
-
-                Add Marks
-
-            </button>
-
-        </div>
-
-        <!-- TABLE -->
-
-        <div class="table-box">
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Class</th>
-                        <th>Exam</th>
-                        <th>Marks</th>
-                        <th>Total</th>
-                        <th>Average</th>
-                        <th>Date</th>
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="markTable">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- DOWNLOAD -->
-
-        <div class="text-center mt-4">
-
-            <button class="btn btn-download btn-lg"
-                    onclick="downloadExcel()">
-
-                <i class="fa-solid fa-file-excel"></i>
-
-                Download Excel
-
-            </button>
-
-             <!-- ADMIN HOME BUTTON -->
-    <a href="index.html"
-       class="btn btn-dark ms-2">
-
-        <i class="fa-solid fa-house"></i>
-
-        Admin Home
-
-    </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-    © 2026 Sivani Coaching Center
-
-</div>
 
 <!-- SCRIPT -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
+<script src="school-exams.js"></script>
 
 <script>
 
@@ -391,12 +444,29 @@ let students = [];
 // MARKS STORAGE
 let marks = [];
 
+let currentActiveStudent = null;
+
 // LOAD DATA
 loadData();
 
 async function loadData() {
+    await syncPortalSettingsFromDB();
+    populateGroupsDropdown();
     await loadStudentDropdown();
     await loadMarks();
+}
+
+function populateGroupsDropdown() {
+    let select = document.getElementById("groupSelect");
+    if (!select) return;
+    select.innerHTML = `<option value="">Select Group</option>`;
+    
+    let groups = getAcademicGroups();
+    for (let groupName in groups) {
+        if (groupName !== "Class 10 & below") {
+            select.innerHTML += `<option value="${groupName}">${groupName}</option>`;
+        }
+    }
 }
 
 
@@ -412,6 +482,7 @@ async function loadStudentDropdown(){
     const { data, error } = await _supabase
         .from('students')
         .select('*')
+        .eq('status', 'Active')
         .order('student_id', { ascending: true });
 
     if (error) {
@@ -422,17 +493,11 @@ async function loadStudentDropdown(){
     students = data;
 
     students.forEach((student,index)=>{
-
         dropdown.innerHTML += `
-
         <option value="${index}">
-
             ${student.student_id} - ${student.name}
-
         </option>
-
         `;
-
     });
 
 }
@@ -449,12 +514,24 @@ function fillStudentData(){
 
     subjectBox.innerHTML = "";
 
+    let examSelect = document.getElementById("examType");
+
     if(index == ""){
+        // Reset to generic defaults
+        examSelect.innerHTML = `
+            <option value="">Select Exam</option>
+            <option>Monthly Test</option>
+            <option>Quarterly Exam</option>
+            <option>Half Yearly Exam</option>
+            <option>Annual Exam</option>
+        `;
+        examSelect.onchange = null;
         return;
     }
 
     let student =
         students[index];
+    currentActiveStudent = student;
 
     document.getElementById("studentName").value =
         student.name;
@@ -462,33 +539,44 @@ function fillStudentData(){
     document.getElementById("studentClass").value =
         student.student_class;
 
+    // Dynamic School Exams Load
+    let school = student.school_name || "Default";
+    let config = getSchoolStructure(school);
+    examSelect.innerHTML = `<option value="">Select Exam</option>`;
+    config.exams.forEach(e => {
+        examSelect.innerHTML += `<option data-marks="${e.totalMarks}">${e.name}</option>`;
+    });
+    examSelect.onchange = function() {
+        let selectedOption = this.options[this.selectedIndex];
+        let maxMarks = selectedOption ? selectedOption.getAttribute("data-marks") : null;
+        updateSubjectMarksValidation(maxMarks);
+    };
+
     let cls =
         parseInt(student.student_class);
 
     // BELOW OR EQUAL 10
     if(cls <= 10){
-
-        document.getElementById("groupBox").style.display =
-            "none";
-
-        createSubjects([
-
-            "Tamil",
-            "English",
-            "Maths",
-            "Science",
-            "Social"
-
-        ]);
-
+        document.getElementById("groupBox").style.display = "none";
+        let groups = getAcademicGroups();
+        let subjects = [...(groups["Class 10 & below"] || ["Tamil", "English", "Maths", "Science", "Social"])];
+        
+        let extra = student.custom_subjects || [];
+        extra.forEach(ex => {
+            if (!subjects.includes(ex)) subjects.push(ex);
+        });
+        
+        createSubjects(subjects);
     }
 
     // 11 & 12
     else{
-
-        document.getElementById("groupBox").style.display =
-            "flex";
-
+        document.getElementById("groupBox").style.display = "flex";
+        let groupSelect = document.getElementById("groupSelect");
+        if (groupSelect) {
+            groupSelect.value = student.academic_group || "";
+        }
+        loadSubjects();
     }
 
 }
@@ -496,57 +584,28 @@ function fillStudentData(){
 
 // LOAD SUBJECTS FOR 11/12
 function loadSubjects(){
-
-    let group =
-        document.getElementById("groupSelect").value;
-
+    let group = document.getElementById("groupSelect").value;
     if(group == "") return;
 
-    if(group == "Bio Maths"){
+    let groups = getAcademicGroups();
+    let subjects = [...(groups[group] || [])];
 
-        createSubjects([
-
-            "Tamil",
-            "English",
-            "Physics",
-            "Chemistry",
-            "Maths",
-            "Biology"
-
-        ]);
-
+    // CBSE Auto-filtering: Exclude Tamil for CBSE Class 11 and 12
+    if (currentActiveStudent) {
+        let board = currentActiveStudent.board || "State Board";
+        let cls = currentActiveStudent.student_class || "";
+        if (board === "CBSE" && (cls === "11" || cls === "12")) {
+            subjects = subjects.filter(sub => sub !== "Tamil");
+        }
+        
+        // Append extra subjects
+        let extra = currentActiveStudent.custom_subjects || [];
+        extra.forEach(ex => {
+            if (!subjects.includes(ex)) subjects.push(ex);
+        });
     }
 
-    else if(group == "Computer Science"){
-
-        createSubjects([
-
-            "Tamil",
-            "English",
-            "Physics",
-            "Chemistry",
-            "Maths",
-            "Computer Science"
-
-        ]);
-
-    }
-
-    else if(group == "Commerce"){
-
-        createSubjects([
-
-            "Tamil",
-            "English",
-            "Accountancy",
-            "Commerce",
-            "Economics",
-            "Computer Application"
-
-        ]);
-
-    }
-
+    createSubjects(subjects);
 }
 
 
@@ -559,24 +618,24 @@ function createSubjects(subjects){
     box.innerHTML = "";
 
     subjects.forEach(subject=>{
-
-        let id =
-            subject.replace(/\s/g,'');
-
+        let id = subject.replace(/\s/g,'');
         box.innerHTML += `
-
         <div class="col-md-2">
-
             <input type="number"
                    id="${id}"
                    class="form-control"
                    placeholder="${subject}">
-
         </div>
-
         `;
-
     });
+
+    // Apply current maxMarks validation if an exam is selected
+    let examSelect = document.getElementById("examType");
+    let selectedOption = examSelect.options[examSelect.selectedIndex];
+    let maxMarks = selectedOption ? selectedOption.getAttribute("data-marks") : null;
+    if (maxMarks) {
+        updateSubjectMarksValidation(maxMarks);
+    }
 
 }
 
@@ -607,100 +666,52 @@ async function addMark(){
     let subjects = [];
 
     // <=10
+    let groups = getAcademicGroups();
     if(cls <= 10){
-
-        subjects = [
-
-            "Tamil",
-            "English",
-            "Maths",
-            "Science",
-            "Social"
-
-        ];
-
+        subjects = [...(groups["Class 10 & below"] || ["Tamil", "English", "Maths", "Science", "Social"])];
+        let extra = student.custom_subjects || [];
+        extra.forEach(ex => {
+            if (!subjects.includes(ex)) subjects.push(ex);
+        });
     }
 
     // 11/12
     else{
-
-        let group =
-            document.getElementById("groupSelect").value;
-
+        let group = document.getElementById("groupSelect").value;
         if(group == ""){
-
             alert("Select Group");
-
             return;
-
         }
+        subjects = [...(groups[group] || [])];
 
-        if(group == "Bio Maths"){
-
-            subjects = [
-
-                "Tamil",
-                "English",
-                "Physics",
-                "Chemistry",
-                "Maths",
-                "Biology"
-
-            ];
-
+        let board = student.board || "State Board";
+        if (board === "CBSE" && (student.student_class === "11" || student.student_class === "12")) {
+            subjects = subjects.filter(sub => sub !== "Tamil");
         }
-
-        else if(group == "Computer Science"){
-
-            subjects = [
-
-                "Tamil",
-                "English",
-                "Physics",
-                "Chemistry",
-                "Maths",
-                "Computer Science"
-
-            ];
-
-        }
-
-        else if(group == "Commerce"){
-
-            subjects = [
-
-                "Tamil",
-                "English",
-                "Accountancy",
-                "Commerce",
-                "Economics",
-                "Computer Application"
-
-            ];
-
-        }
-
+        
+        let extra = student.custom_subjects || [];
+        extra.forEach(ex => {
+            if (!subjects.includes(ex)) subjects.push(ex);
+        });
     }
 
     let markData = {};
     let total = 0;
 
     subjects.forEach(subject=>{
-
-        let id =
-            subject.replace(/\s/g,'');
-
-        let value =
-            Number(document.getElementById(id).value);
-
+        let id = subject.replace(/\s/g,'');
+        let value = Number(document.getElementById(id).value);
         markData[subject] = value;
-
         total += value;
-
     });
 
-    let average =
-        (total / subjects.length).toFixed(2);
+    // Save max marks metadata inside subjects JSON
+    let examSelect = document.getElementById("examType");
+    let selectedOption = examSelect.options[examSelect.selectedIndex];
+    let maxMarks = selectedOption ? Number(selectedOption.getAttribute("data-marks") || 100) : 100;
+    markData["_max_marks"] = maxMarks;
+
+    let average = (total / subjects.length).toFixed(2);
 
     const { error } = await _supabase
         .from('marks')
@@ -710,7 +721,7 @@ async function addMark(){
             subjects: markData,
             total: total,
             average: average,
-            date: new Date().toLocaleDateString()
+            date: new Date().toISOString().split('T')[0]
         }]);
 
     if (error) {
@@ -759,55 +770,43 @@ async function loadMarks(){
     table.innerHTML = "";
 
     marks.forEach((data,index)=>{
-
         let subjectText = "";
+        let maxMarks = (data.subjects && data.subjects._max_marks) ? data.subjects._max_marks : 100;
+        let subjectCount = 0;
 
         for(let key in data.subjects){
-
+            if (key.startsWith("_")) continue;
+            subjectCount++;
             subjectText +=
                 key + " : " +
                 data.subjects[key] + "<br>";
-
         }
 
         let studentName = data.students ? data.students.name : 'Unknown';
         let studentClass = data.students ? data.students.student_class : 'Unknown';
 
+        let maxTotal = subjectCount * maxMarks;
+        let percentage = maxTotal > 0 ? ((data.total / maxTotal) * 100).toFixed(1) : 0;
+        let totalDisplay = `${data.total} / ${maxTotal}`;
+        let averageDisplay = `${data.average} (${percentage}%)`;
+
         table.innerHTML += `
-
         <tr>
-
             <td>${data.student_id}</td>
-
             <td>${studentName}</td>
-
             <td>${studentClass}</td>
-
             <td>${data.exam}</td>
-
             <td>${subjectText}</td>
-
-            <td>${data.total}</td>
-
-            <td>${data.average}</td>
-
+            <td>${totalDisplay}</td>
+            <td>${averageDisplay}</td>
             <td>${data.date}</td>
-
             <td>
-
-                <button class="btn-delete"
-                        onclick="deleteMark(${data.id})">
-
+                <button class="btn-delete" onclick="deleteMark(${data.id})">
                     Delete
-
                 </button>
-
             </td>
-
         </tr>
-
         `;
-
     });
 
 }
@@ -864,10 +863,8 @@ function downloadExcel(){
         };
 
         for(let key in data.subjects){
-
-            row[key] =
-                data.subjects[key];
-
+            if (key.startsWith("_")) continue;
+            row[key] = data.subjects[key];
         }
 
         excelData.push(row);
@@ -891,6 +888,222 @@ function downloadExcel(){
         "Student_Marks.xlsx"
     );
 
+}
+
+// SCHOOL EXAM CONFIGURATION MODAL CONTROLLER
+let examModalInstance = null;
+
+function openExamStructureModal() {
+    if (!examModalInstance) {
+        examModalInstance = new bootstrap.Modal(document.getElementById('examStructureModal'));
+    }
+    
+    // Populate school list
+    let schoolSelect = document.getElementById("configSchoolSelect");
+    schoolSelect.innerHTML = `<option value="Default">Default (Fallback)</option>`;
+    
+    let activeSchools = [...new Set(students.map(s => s.school_name).filter(Boolean))];
+    activeSchools.forEach(sch => {
+        if (sch.toLowerCase() !== "default") {
+            schoolSelect.innerHTML += `<option value="${sch}">${sch}</option>`;
+        }
+    });
+    
+    loadSchoolConfigUI();
+    examModalInstance.show();
+}
+
+function loadSchoolConfigUI() {
+    let school = document.getElementById("configSchoolSelect").value;
+    let config = getSchoolStructure(school);
+    let list = document.getElementById("configExamsList");
+    list.innerHTML = "";
+    
+    config.exams.forEach((exam, idx) => {
+        list.innerHTML += `
+            <tr>
+                <td><input type="text" class="form-control exam-name-input" value="${exam.name}" required></td>
+                <td><input type="number" class="form-control exam-marks-input" value="${exam.totalMarks}" min="1" required></td>
+                <td>
+                    <div class="btn-group gap-1">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveExamRow(${idx}, -1)" title="Move Up">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveExamRow(${idx}, 1)" title="Move Down">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteExamRow(${idx})" title="Delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+function deleteExamRow(idx) {
+    let rows = document.querySelectorAll("#configExamsList tr");
+    rows[idx].remove();
+    // Re-index action buttons
+    rebuildExamTableIndices();
+}
+
+function rebuildExamTableIndices() {
+    let rows = document.querySelectorAll("#configExamsList tr");
+    rows.forEach((row, idx) => {
+        let buttons = row.querySelectorAll("button");
+        if (buttons.length >= 3) {
+            buttons[0].setAttribute("onclick", `moveExamRow(${idx}, -1)`);
+            buttons[1].setAttribute("onclick", `moveExamRow(${idx}, 1)`);
+            buttons[2].setAttribute("onclick", `deleteExamRow(${idx})`);
+        }
+    });
+}
+
+function addNewExamRow() {
+    let list = document.getElementById("configExamsList");
+    let rowCount = list.querySelectorAll("tr").length;
+    list.innerHTML += `
+        <tr>
+            <td><input type="text" class="form-control exam-name-input" placeholder="e.g. Monthly Test" required></td>
+            <td><input type="number" class="form-control exam-marks-input" value="100" min="1" required></td>
+            <td>
+                <div class="btn-group gap-1">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveExamRow(${rowCount}, -1)" title="Move Up">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveExamRow(${rowCount}, 1)" title="Move Down">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteExamRow(${rowCount})" title="Delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `;
+}
+
+function moveExamRow(idx, direction) {
+    let list = document.getElementById("configExamsList");
+    let rows = Array.from(list.querySelectorAll("tr"));
+    let targetIdx = idx + direction;
+    if (targetIdx < 0 || targetIdx >= rows.length) return;
+    
+    let rowA = rows[idx];
+    let rowB = rows[targetIdx];
+    
+    let nameA = rowA.querySelector(".exam-name-input").value;
+    let marksA = rowA.querySelector(".exam-marks-input").value;
+    
+    let nameB = rowB.querySelector(".exam-name-input").value;
+    let marksB = rowB.querySelector(".exam-marks-input").value;
+    
+    rowA.querySelector(".exam-name-input").value = nameB;
+    rowA.querySelector(".exam-marks-input").value = marksB;
+    
+    rowB.querySelector(".exam-name-input").value = nameA;
+    rowB.querySelector(".exam-marks-input").value = marksA;
+}
+
+function addNewSchoolConfig() {
+    let input = document.getElementById("newSchoolNameInput");
+    let name = input.value.trim();
+    if (!name) {
+        alert("Please enter a valid school name.");
+        return;
+    }
+    
+    let schoolSelect = document.getElementById("configSchoolSelect");
+    // Check if already exists in options
+    let exists = false;
+    for (let opt of schoolSelect.options) {
+        if (opt.value.toLowerCase() === name.toLowerCase()) {
+            exists = true;
+            schoolSelect.value = opt.value;
+            break;
+        }
+    }
+    
+    if (!exists) {
+        let opt = document.createElement("option");
+        opt.value = name;
+        opt.innerText = name;
+        schoolSelect.appendChild(opt);
+        schoolSelect.value = name;
+    }
+    
+    input.value = "";
+    loadSchoolConfigUI();
+}
+
+function saveActiveSchoolConfig() {
+    let school = document.getElementById("configSchoolSelect").value;
+    let structures = getSchoolStructures();
+    
+    let rows = document.querySelectorAll("#configExamsList tr");
+    let exams = [];
+    let isValid = true;
+    
+    rows.forEach(row => {
+        let nameInput = row.querySelector(".exam-name-input");
+        let marksInput = row.querySelector(".exam-marks-input");
+        
+        let name = nameInput.value.trim();
+        let marks = parseInt(marksInput.value);
+        
+        if (!name || isNaN(marks) || marks <= 0) {
+            isValid = false;
+            nameInput.classList.add("is-invalid");
+            marksInput.classList.add("is-invalid");
+        } else {
+            nameInput.classList.remove("is-invalid");
+            marksInput.classList.remove("is-invalid");
+            exams.push({ name: name, totalMarks: marks });
+        }
+    });
+    
+    if (!isValid) {
+        alert("Please correct invalid exam rows before saving.");
+        return;
+    }
+    
+    structures[school] = { exams: exams };
+    saveSchoolStructures(structures);
+    alert("Exam configuration saved successfully!");
+    
+    // Refresh student fields if active student is from this school
+    let selectIndex = document.getElementById("studentId").value;
+    if (selectIndex !== "") {
+        let student = students[selectIndex];
+        let currentSchool = student.school_name || "Default";
+        if (currentSchool.toLowerCase() === school.toLowerCase()) {
+            fillStudentData();
+        }
+    }
+    
+    examModalInstance.hide();
+}
+
+function updateSubjectMarksValidation(maxMarks) {
+    if (!maxMarks) return;
+    let inputs = document.querySelectorAll("#subjectFields input");
+    inputs.forEach(input => {
+        let currentPlaceholder = input.getAttribute("placeholder");
+        let basePlaceholder = currentPlaceholder.split(" (Max ")[0];
+        input.setAttribute("placeholder", `${basePlaceholder} (Max ${maxMarks})`);
+        input.setAttribute("max", maxMarks);
+        
+        input.oninput = function() {
+            let val = Number(this.value);
+            let limit = Number(maxMarks);
+            if (val > limit) {
+                this.value = limit;
+                alert(`Maximum marks for this exam is ${limit}`);
+            }
+        };
+    });
 }
 
 </script>

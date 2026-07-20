@@ -17,361 +17,424 @@
         :root {
             --primary: #1e3c72;
             --primary-dark: #122548;
-            --accent: #00c6ff;
-            --bg-light: #f5f8ff;
-            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.05);
-            --card-hover-shadow: 0 20px 40px rgba(30, 60, 114, 0.12);
+            --accent: #3b82f6;
+            --bg-light: #f4f7fe;
+            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+            --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+            --sidebar-width: 280px;
         }
 
         * {
             font-family: 'Outfit', sans-serif;
-            transition: all 0.3s ease;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.25s ease;
         }
 
         body {
             background: var(--bg-light);
             min-height: 100vh;
             display: flex;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR STYLE */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
             flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
         }
 
-        /* HEADER & DASHBOARD HEADER */
-        .hero-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 60px 0 100px 0;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        .sidebar-brand-box {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .hero-header h1 {
-            font-weight: 800;
-            font-size: 2.8rem;
-            letter-spacing: -0.5px;
+        .sidebar-logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-dark);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2.1rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
         }
 
-        .hero-header p {
-            opacity: 0.9;
-            font-weight: 300;
+        .sidebar-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #5c6f84;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            gap: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item i {
             font-size: 1.15rem;
+            width: 24px;
+            text-align: center;
         }
 
-        /* STATS BAR */
-        .stats-container {
-            margin-top: -60px;
-            position: relative;
-            z-index: 10;
+        .sidebar-item:hover {
+            color: var(--primary-dark);
+            background: #f1f4f9;
+        }
+
+        .sidebar-item.active {
+            background: #d1e4ff;
+            color: #0c4a9c;
+        }
+
+        /* MAIN CONTENT STYLE */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-desc {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            border-radius: 24px;
-            padding: 25px 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px;
             box-shadow: var(--card-shadow);
-            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.015);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 20px;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--card-hover-shadow);
         }
 
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
+        .stat-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+            font-size: 1.45rem;
+        }
+
+        .stat-details {
+            display: flex;
+            flex-direction: column;
         }
 
         .stat-val {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             font-weight: 700;
             color: var(--primary-dark);
             margin-bottom: 2px;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #718096;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* GRID MODULE CARDS */
-        .module-grid {
-            padding: 50px 0;
+        /* CARD ROW/INFO */
+        .dashboard-body {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.01);
             flex-grow: 1;
         }
 
-        .module-card {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid rgba(30, 60, 114, 0.03);
-            padding: 30px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
+        .section-heading {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            color: #5c6f84;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* QUICK TILES */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .quick-tile {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
             text-decoration: none !important;
             color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
         }
 
-        .module-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-hover-shadow);
+        .quick-tile:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
         }
 
-        .module-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-        }
-
-        .module-card.students-card::after { background: #3b82f6; }
-        .module-card.attendance-card::after { background: #10b981; }
-        .module-card.history-card::after { background: #8b5cf6; }
-        .module-card.stationery-card::after { background: #f59e0b; }
-        .module-card.marks-card::after { background: #ec4899; }
-        .module-card.portal-card::after { background: #06b6d4; }
-        .module-card.receipts-card::after { background: #14b8a6; }
-
-        .module-badge {
-            width: 56px;
-            height: 56px;
-            border-radius: 18px;
+        .quick-tile-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 24px;
+            font-size: 1.25rem;
         }
 
-        .module-title {
-            font-size: 1.3rem;
+        .quick-tile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quick-tile-title {
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--primary-dark);
-            margin-bottom: 10px;
+            margin-bottom: 1px;
         }
 
-        .module-desc {
-            font-size: 0.95rem;
-            color: #4a5568;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        .module-action {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .module-card:hover .module-action i {
-            transform: translateX(4px);
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 30px;
+        .quick-tile-desc {
+            font-size: 0.85rem;
             color: #718096;
-            font-size: 0.95rem;
-            background: white;
-            border-top: 1px solid rgba(0,0,0,0.02);
-            margin-top: auto;
         }
 
         /* UTILITIES */
-        .bg-blue-light { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-        .bg-emerald-light { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-        .bg-violet-light { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
-        .bg-amber-light { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-        .bg-rose-light { background: rgba(236, 72, 153, 0.1); color: #ec4899; }
-        .bg-cyan-light { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
-        .bg-teal-light { background: rgba(20, 184, 166, 0.1); color: #14b8a6; }
+        .bg-blue-light { background: rgba(59, 130, 246, 0.08); color: #3b82f6; }
+        .bg-emerald-light { background: rgba(16, 185, 129, 0.08); color: #10b981; }
+        .bg-violet-light { background: rgba(139, 92, 246, 0.08); color: #8b5cf6; }
+        .bg-amber-light { background: rgba(245, 158, 11, 0.08); color: #f59e0b; }
+        .bg-rose-light { background: rgba(236, 72, 153, 0.08); color: #ec4899; }
+        .bg-cyan-light { background: rgba(6, 182, 212, 0.08); color: #06b6d4; }
+        .bg-teal-light { background: rgba(20, 184, 166, 0.08); color: #14b8a6; }
     </style>
 </head>
 
 <body>
 
-    <!-- HERO HEADER -->
-    <header class="hero-header text-center">
-        <div class="container">
-            <h1 class="mb-2"><i class="fa-solid fa-graduation-cap me-3"></i>Sivani Coaching Center</h1>
-            <p class="mb-0">Tuition Center Administration & Analytics Portal</p>
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
         </div>
-    </header>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item active">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-    <!-- STATISTICS SUMMARY -->
-    <section class="stats-container container">
-        <div class="row g-4">
-            <!-- Stat 1 -->
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <div class="stat-icon bg-blue-light"><i class="fa-solid fa-users"></i></div>
-                    <div class="stat-val" id="cnt-students">-</div>
-                    <div class="stat-label">Total Students</div>
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Good Day, Administrator</h1>
+            <p class="welcome-desc">Welcome to the Sivani Coaching Center Management Portal.</p>
+        </section>
+
+        <!-- Stats Grid counters -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-blue-light"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-details">
+                    <span class="stat-val" id="cnt-students">-</span>
+                    <span class="stat-label">Total Students</span>
                 </div>
             </div>
-            <!-- Stat 2 -->
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <div class="stat-icon bg-emerald-light"><i class="fa-solid fa-calendar-day"></i></div>
-                    <div class="stat-val" id="cnt-attendance">-</div>
-                    <div class="stat-label">Attendance Records</div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-emerald-light"><i class="fa-solid fa-calendar-day"></i></div>
+                <div class="stat-details">
+                    <span class="stat-val" id="cnt-attendance">-</span>
+                    <span class="stat-label">Attendance Records</span>
                 </div>
             </div>
-            <!-- Stat 3 -->
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <div class="stat-icon bg-amber-light"><i class="fa-solid fa-wallet"></i></div>
-                    <div class="stat-val" id="cnt-stationery">₹-</div>
-                    <div class="stat-label">Stationery Revenue</div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-amber-light"><i class="fa-solid fa-wallet"></i></div>
+                <div class="stat-details">
+                    <span class="stat-val" id="cnt-stationery">₹-</span>
+                    <span class="stat-label">Stationery Revenue</span>
                 </div>
             </div>
-            <!-- Stat 4 -->
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <div class="stat-icon bg-rose-light"><i class="fa-solid fa-medal"></i></div>
-                    <div class="stat-val" id="cnt-marks">-</div>
-                    <div class="stat-label">Marks Logged</div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-rose-light"><i class="fa-solid fa-medal"></i></div>
+                <div class="stat-details">
+                    <span class="stat-val" id="cnt-marks">-</span>
+                    <span class="stat-label">Marks Logged</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PORTAL TILES / ACTIONS -->
-    <main class="module-grid container">
-        <div class="row g-4">
-            <!-- Tile 1: Student Directory -->
-            <div class="col-md-4">
-                <a href="students.html" class="module-card students-card">
-                    <div class="module-badge bg-blue-light">
-                        <i class="fa-solid fa-user-graduate"></i>
+        <!-- Overview Dashboard details -->
+        <section class="dashboard-body">
+            <h3 class="section-heading">Quick Actions</h3>
+            <p class="section-desc">Quickly jump to any administrative module to manage students, track resources, or export sheets.</p>
+            
+            <div class="quick-grid">
+                <a href="students.html" class="quick-tile">
+                    <div class="quick-tile-icon bg-blue-light"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Student Admissions</span>
+                        <span class="quick-tile-desc">Register and update directory</span>
                     </div>
-                    <h4 class="module-title">Student Directory</h4>
-                    <p class="module-desc">Manage admissions, register new student details, delete files, or update contacts.</p>
-                    <div class="module-action">
-                        <span>Open Directory</span><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                
+                <a href="admin.html?mode=mark" class="quick-tile">
+                    <div class="quick-tile-icon bg-emerald-light"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Mark Attendance</span>
+                        <span class="quick-tile-desc">Log Morning/Evening shifts</span>
+                    </div>
+                </a>
+                
+                <a href="admin.html?mode=history" class="quick-tile">
+                    <div class="quick-tile-icon bg-violet-light"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Attendance History</span>
+                        <span class="quick-tile-desc">Inspect past class logs</span>
+                    </div>
+                </a>
+                
+                <a href="stat.html" class="quick-tile">
+                    <div class="quick-tile-icon bg-amber-light"><i class="fa-solid fa-box-archive"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Stationery Expense</span>
+                        <span class="quick-tile-desc">Track material logs & sales</span>
+                    </div>
+                </a>
+                
+                <a href="mark.html" class="quick-tile">
+                    <div class="quick-tile-icon bg-rose-light"><i class="fa-solid fa-star"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Student Marks</span>
+                        <span class="quick-tile-desc">Log grades & average test scores</span>
+                    </div>
+                </a>
+                
+                <a href="std.html" class="quick-tile">
+                    <div class="quick-tile-icon bg-cyan-light"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Student Search</span>
+                        <span class="quick-tile-desc">Public parent inspection portal</span>
+                    </div>
+                </a>
+                
+                <a href="fees.html" class="quick-tile">
+                    <div class="quick-tile-icon bg-teal-light"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="quick-tile-info">
+                        <span class="quick-tile-title">Fees Receipts</span>
+                        <span class="quick-tile-desc">Print tuition payment slips</span>
                     </div>
                 </a>
             </div>
-
-            <!-- Tile 2: Mark Attendance -->
-            <div class="col-md-4">
-                <a href="admin.html" class="module-card attendance-card">
-                    <div class="module-badge bg-emerald-light">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <h4 class="module-title">Mark Attendance</h4>
-                    <p class="module-desc">Select date and log student daily attendance. Pre-populated statuses load instantly.</p>
-                    <div class="module-action">
-                        <span>Open Sheet</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Tile 3: Attendance History -->
-            <div class="col-md-4">
-                <a href="view_attendence.html" class="module-card history-card">
-                    <div class="module-badge bg-violet-light">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <h4 class="module-title">Attendance History</h4>
-                    <p class="module-desc">Look up complete class logs for past dates. Renders distinct color-coded badges.</p>
-                    <div class="module-action">
-                        <span>Open Viewer</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Tile 4: Stationery Transactions -->
-            <div class="col-md-4">
-                <a href="stat.html" class="module-card stationery-card">
-                    <div class="module-badge bg-amber-light">
-                        <i class="fa-solid fa-book"></i>
-                    </div>
-                    <h4 class="module-title">Stationery Expense</h4>
-                    <p class="module-desc">Track material payments and books issued to students. Generate excel reports.</p>
-                    <div class="module-action">
-                        <span>Open Ledger</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Tile 5: Academic Marks -->
-            <div class="col-md-4">
-                <a href="mark.html" class="module-card marks-card">
-                    <div class="module-badge bg-rose-light">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <h4 class="module-title">Student Marks</h4>
-                    <p class="module-desc">Log term grades, test marks, and custom subjects. Generates class score averages.</p>
-                    <div class="module-action">
-                        <span>Open Marksheet</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Tile 6: Student Search Portal -->
-            <div class="col-md-4">
-                <a href="std.html" class="module-card portal-card">
-                    <div class="module-badge bg-cyan-light">
-                        <i class="fa-solid fa-search"></i>
-                    </div>
-                    <h4 class="module-title">Student Search</h4>
-                    <p class="module-desc">Public search interface for students or parents to inspect progress logs using ID.</p>
-                    <div class="module-action">
-                        <span>Open Search</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Tile 7: Receipt Invoice Generator -->
-            <div class="col-md-4">
-                <a href="fees.html" class="module-card receipts-card">
-                    <div class="module-badge bg-teal-light">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                    <h4 class="module-title">Fees Receipt</h4>
-                    <p class="module-desc">Quick printable fees receipt generator for tuition payment slips.</p>
-                    <div class="module-action">
-                        <span>Open Generator</span><i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-            </div>
-        </div>
+        </section>
     </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <p class="mb-0">© 2026 Sivani Coaching Center Management System. Powered by Supabase Backend.</p>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

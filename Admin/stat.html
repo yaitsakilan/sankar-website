@@ -22,374 +22,368 @@
 
     <!-- Google Font -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Excel Library -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
-
-        *{
-            font-family:'Poppins',sans-serif;
+        :root {
+            --primary: #1e3c72;
+            --primary-dark: #122548;
+            --accent: #3b82f6;
+            --bg-light: #f4f7fe;
+            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+            --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+            --sidebar-width: 280px;
         }
 
-        body{
-            background:#f4f7fe;
+        * {
+            font-family: 'Outfit', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.25s ease;
         }
 
-        /* HEADER */
-
-        .header-section{
-            background:linear-gradient(135deg,#1b2a52,#29417d);
-            color:white;
-            text-align:center;
-            padding:45px 20px;
-            border-bottom-left-radius:30px;
-            border-bottom-right-radius:30px;
-            box-shadow:0px 5px 15px rgba(0,0,0,0.1);
-            position: relative;
+        body {
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
         }
 
-        .back-home-btn{
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 8px 16px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
+        /* SIDEBAR STYLE */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            padding: 40px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
             z-index: 100;
+        }
+
+        .sidebar-brand-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-dark);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2.1rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
+        }
+
+        .sidebar-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #5c6f84;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            gap: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item i {
+            font-size: 1.15rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-item:hover {
+            color: var(--primary-dark);
+            background: #f1f4f9;
+        }
+
+        .sidebar-item.active {
+            background: #d1e4ff;
+            color: #0c4a9c;
+        }
+
+        /* MAIN CONTENT STYLE */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-desc {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        .dashboard-body {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            flex-grow: 1;
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            height: 50px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            padding-left: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: none;
+        }
+
+        .btn-main {
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
             transition: 0.3s;
         }
 
-        .back-home-btn:hover{
-            background: white;
-            color: #1b2a52;
-            transform: translateX(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .btn-add {
+            background: #3b82f6;
+            color: white;
         }
 
-        .header-section h1{
-            font-size:40px;
-            font-weight:700;
+        .btn-add:hover {
+            background: #2563eb;
         }
 
-        .header-section p{
-            font-size:17px;
-            margin-top:10px;
-            opacity:0.9;
+        .table-box {
+            margin-top: 35px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
 
-        /* MAIN BOX */
-
-        .main-box{
-            background:white;
-            margin-top:40px;
-            padding:35px;
-            border-radius:25px;
-            box-shadow:0px 10px 30px rgba(0,0,0,0.08);
+        .table {
+            margin-bottom: 0;
         }
 
-        .section-title{
-            color:#1b2a52;
-            font-weight:700;
-            margin-bottom:25px;
+        .table thead {
+            background: var(--primary);
+            color: white;
         }
 
-        /* FORM */
-
-        .form-control{
-            height:55px;
-            border-radius:12px;
-            border:1px solid #dcdcdc;
-            padding-left:15px;
+        .table th {
+            padding: 14px 16px;
+            font-weight: 600;
         }
 
-        .form-control:focus{
-            border-color:#0d6efd;
-            box-shadow:none;
+        .table td {
+            vertical-align: middle;
+            padding: 12px 16px;
         }
 
-        /* BUTTON */
-
-        .btn-main{
-            height:55px;
-            border:none;
-            border-radius:12px;
-            font-weight:600;
-            transition:0.3s;
+        .btn-update {
+            background: #ffc107;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: 600;
+            margin-right: 5px;
         }
 
-        .btn-add{
-            background:#0d6efd;
-            color:white;
+        .btn-update:hover {
+            background: #e0a800;
         }
 
-        .btn-add:hover{
-            background:#084298;
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: 600;
         }
 
-        /* TABLE */
-
-        .table-box{
-            margin-top:35px;
-            border-radius:18px;
-            overflow:hidden;
+        .btn-delete:hover {
+            background: #bb2d3b;
         }
 
-        .table{
-            margin-bottom:0;
+        .total-box {
+            margin-top: 30px;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid #cbd5e1;
         }
 
-        .table thead{
-            background:#1b2a52;
-            color:white;
+        .total-box h2 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .table th{
-            padding:18px;
-            text-align:center;
-            font-weight:600;
+        .total-box h1 {
+            color: #10b981;
+            font-weight: 800;
+            font-size: 2.2rem;
         }
-
-        .table td{
-            text-align:center;
-            vertical-align:middle;
-            padding:15px;
-        }
-
-        .table tbody tr:hover{
-            background:#f4f8ff;
-        }
-
-        /* ACTION BUTTONS */
-
-        .btn-update{
-            background:#ffc107;
-            color:black;
-            border:none;
-            border-radius:8px;
-            padding:8px 14px;
-            font-weight:600;
-            margin-right:5px;
-        }
-
-        .btn-delete{
-            background:#dc3545;
-            color:white;
-            border:none;
-            border-radius:8px;
-            padding:8px 14px;
-            font-weight:600;
-        }
-
-        /* TOTAL */
-
-        .total-box{
-            margin-top:30px;
-            background:#eef3ff;
-            padding:20px;
-            border-radius:18px;
-            text-align:center;
-        }
-
-        .total-box h2{
-            color:#1b2a52;
-            font-weight:700;
-        }
-
-        .total-box h1{
-            color:#198754;
-            font-weight:700;
-        }
-
-        /* FOOTER */
-
-        .footer{
-            text-align:center;
-            margin-top:50px;
-            padding:20px;
-            color:#555;
-            font-size:15px;
-        }
-
     </style>
 
 </head>
 
 <body>
 
-<section class="header-section">
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item active">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-    <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Stationery Expense Ledger</h1>
+            <p class="welcome-desc">Log and track materials payments, notebooks, and study books issued to tuition students.</p>
+        </section>
 
-    <div class="container">
-
-        <h1>
-            <i class="fa-solid fa-money-bill-wave"></i>
-            Student Stationery Amount
-        </h1>
-
-        <p>
-            Manage Student Stationery Payments
-        </p>
-
-    </div>
-
-</section>
-
-<!-- MAIN -->
-
-<div class="container">
-
-    <div class="main-box">
-
-        <h3 class="section-title">
-
-            <i class="fa-solid fa-plus"></i>
-
-            Add Stationery Amount
-
-        </h3>
-
-        <!-- FORM -->
-
-        <div class="row g-3">
-
-            <!-- STUDENT DROPDOWN -->
-
-            <div class="col-md-4">
-
-                <select id="studentId"
-                        class="form-control"
-                        onchange="fillStudentName()">
-
-                </select>
-
+        <!-- Main Card List -->
+        <section class="dashboard-body">
+            <h3 class="section-title"><i class="fa-solid fa-plus me-2"></i>Add Stationery Entry</h3>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <select id="studentId" class="form-control" onchange="fillStudentName()"></select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="studentName" class="form-control" placeholder="Student Name" readonly>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" id="amount" class="form-control" placeholder="Amount">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn-main btn-add w-100" id="addBtn" onclick="addAmount()">
+                        <i class="fa-solid fa-plus me-2"></i>Add
+                    </button>
+                </div>
             </div>
 
-            <!-- STUDENT NAME -->
-
-            <div class="col-md-4">
-
-                <input type="text"
-                       id="studentName"
-                       class="form-control"
-                       placeholder="Student Name"
-                       readonly>
-
+            <!-- Table of Logged Payments -->
+            <div class="table-responsive table-box mt-4">
+                <table class="table table-hover align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amountTable"></tbody>
+                </table>
             </div>
 
-            <!-- AMOUNT -->
-
-            <div class="col-md-2">
-
-                <input type="number"
-                       id="amount"
-                       class="form-control"
-                       placeholder="Amount">
-
+            <!-- Total Amount Card -->
+            <div class="total-box mt-4">
+                <h2>Total Ledger Revenue</h2>
+                <h1 id="totalAmount">₹0</h1>
             </div>
 
-            <!-- BUTTON -->
-
-            <div class="col-md-2">
-
-                <button class="btn-main btn-add w-100"
-                        id="addBtn"
-                        onclick="addAmount()">
-
-                    Add
-
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button class="btn btn-success btn-lg px-4" onclick="downloadExcel()">
+                    <i class="fa-solid fa-file-excel me-2"></i>Download Excel
                 </button>
-
             </div>
-
-        </div>
-
-        <!-- TABLE -->
-
-        <div class="table-box">
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="amountTable">
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- TOTAL -->
-
-        <div class="total-box">
-
-            <h2>Total Amount</h2>
-
-            <h1 id="totalAmount">₹0</h1>
-
-        </div>
-
-        <!-- DOWNLOAD BUTTON -->
-
-        <div class="text-center mt-4">
-
-            <button class="btn btn-success btn-lg"
-                    onclick="downloadExcel()">
-
-                <i class="fa-solid fa-file-excel"></i>
-
-                Download Excel
-
-            </button>
-
-             <!-- ADMIN HOME BUTTON -->
-    <a href="index.html"
-       class="btn btn-dark ms-2">
-
-        <i class="fa-solid fa-house"></i>
-
-        Admin Home
-
-    </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-    © 2026 Tuition Center Management System
-
-</div>
+        </section>
+    </main>
 
 <!-- SCRIPT -->
 
@@ -436,17 +430,12 @@ async function loadStudentDropdown(){
     students = data;
 
     students.forEach((student,index)=>{
-
+        let inactiveBadge = student.status === "Inactive" ? " (Inactive)" : "";
         dropdown.innerHTML += `
-
         <option value="${index}">
-
-            ${student.student_id} - ${student.name}
-
+            ${student.student_id} - ${student.name}${inactiveBadge}
         </option>
-
         `;
-
     });
 
 }

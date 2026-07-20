@@ -9,281 +9,853 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
-*{font-family:'Poppins',sans-serif;}
-body{background:#f4f7fe;}
+    :root {
+        --primary: #1e3c72;
+        --primary-dark: #122548;
+        --accent: #3b82f6;
+        --bg-light: #f4f7fe;
+        --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+        --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+        --sidebar-width: 280px;
+    }
 
-.header-section{
-background:linear-gradient(135deg,#1b2a52,#29417d);
-color:white;
-text-align:center;
-padding:45px 20px;
-border-bottom-left-radius:30px;
-border-bottom-right-radius:30px;
-position: relative;
-}
+    * {
+        font-family: 'Outfit', sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        transition: all 0.25s ease;
+    }
 
-.main-box{
-background:white;
-margin-top:40px;
-padding:35px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
+    body {
+        background: var(--bg-light);
+        min-height: 100vh;
+        display: flex;
+        overflow-x: hidden;
+    }
 
-.date-box{
-background:#eef3ff;
-padding:15px;
-border-radius:15px;
-text-align:center;
-font-weight:600;
-margin-bottom:25px;
-}
+    /* SIDEBAR STYLE */
+    .sidebar {
+        width: var(--sidebar-width);
+        background: #ffffff;
+        border-right: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+    }
 
-.table thead{
-background:#1b2a52;
-color:white;
-}
+    .sidebar-brand-box {
+        text-align: center;
+        margin-bottom: 40px;
+    }
 
-.form-select{
-height:45px;
-border-radius:10px;
-}
+    .sidebar-logo-wrapper {
+        width: 70px;
+        height: 70px;
+        background: var(--primary-dark);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 2.1rem;
+        margin: 0 auto 15px auto;
+        box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
+    }
 
-.btn-save{
-background:#198754;
-color:white;
-padding:12px 25px;
-border:none;
-border-radius:12px;
-font-weight:600;
-}
+    .sidebar-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 2px;
+    }
 
-.btn-download{
-background:#0d6efd;
-color:white;
-padding:12px 25px;
-border:none;
-border-radius:12px;
-font-weight:600;
-}
+    .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: #718096;
+        font-weight: 500;
+    }
 
-.back-home-btn{
-position: absolute;
-top: 20px;
-left: 20px;
-background: rgba(255, 255, 255, 0.15);
-backdrop-filter: blur(5px);
-color: white;
-border: 1px solid rgba(255, 255, 255, 0.25);
-padding: 8px 16px;
-border-radius: 30px;
-text-decoration: none;
-font-weight: 600;
-font-size: 0.9rem;
-display: inline-flex;
-align-items: center;
-gap: 8px;
-z-index: 100;
-transition: 0.3s;
-}
+    .sidebar-menu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
-.back-home-btn:hover{
-background: white;
-color: #1b2a52;
-transform: translateX(-3px);
-box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
+    .sidebar-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 14px 20px;
+        border-radius: 14px;
+        color: #5c6f84;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        gap: 15px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
 
+    .sidebar-item i {
+        font-size: 1.15rem;
+        width: 24px;
+        text-align: center;
+    }
+
+    .sidebar-item:hover {
+        color: var(--primary-dark);
+        background: #f1f4f9;
+    }
+
+    .sidebar-item.active {
+        background: #d1e4ff;
+        color: #0c4a9c;
+    }
+
+    /* MAIN CONTENT STYLE */
+    .main-content {
+        margin-left: var(--sidebar-width);
+        flex-grow: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .welcome-section {
+        margin-bottom: 35px;
+    }
+
+    .welcome-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        letter-spacing: -0.5px;
+        margin-bottom: 5px;
+    }
+
+    .welcome-desc {
+        color: #718096;
+        font-size: 1.05rem;
+    }
+
+    .dashboard-body {
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 35px;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(0, 0, 0, 0.01);
+        flex-grow: 1;
+    }
+
+    /* Custom Date Selector Carousel */
+    .date-carousel-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        border-radius: 20px;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 25px;
+    }
+
+    .date-nav-btn {
+        background: transparent;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        width: 42px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: #475569;
+        transition: all 0.2s ease;
+    }
+
+    .date-nav-btn:hover {
+        background: #f1f5ff;
+        border-color: #1e3c72;
+        color: #1e3c72;
+    }
+
+    .date-slider {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 5px;
+        scrollbar-width: none;
+    }
+
+    .date-slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .date-card {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 16px;
+        padding: 12px 18px;
+        min-width: 120px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+    }
+
+    .date-card:hover {
+        border-color: #3b82f6;
+        background: #f8fafc;
+    }
+
+    .date-card.active {
+        background: #d1e4ff !important;
+        border: 1.5px solid #3b82f6 !important;
+        color: #0c4a9c;
+    }
+
+    .date-card .day-label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #64748b;
+        margin-bottom: 4px;
+    }
+
+    .date-card.active .day-label {
+        color: #0c4a9c;
+        font-weight: 600;
+    }
+
+    .date-card .date-label {
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    /* Shift Selection Cards */
+    .shift-cards-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .shift-card {
+        flex: 1;
+        background: #ffffff;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 20px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        user-select: none;
+    }
+
+    .shift-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: #3b82f6;
+    }
+
+    .shift-card.active {
+        background: #d1e4ff !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.08);
+    }
+
+    .shift-icon-wrapper {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #475569;
+        margin-right: 18px;
+        transition: all 0.2s ease;
+    }
+
+    .shift-card.active .shift-icon-wrapper {
+        background: #ffffff;
+        color: #3b82f6;
+    }
+
+    .shift-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .shift-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 2px;
+    }
+
+    .shift-time {
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    .shift-card.active .shift-title {
+        color: #0c4a9c;
+    }
+
+    .shift-card.active .shift-time {
+        color: #0c4a9c;
+        opacity: 0.85;
+    }
+
+    /* Mode Switcher Tabs CSS */
+    .btn-group-toggle {
+        background: #f1f5f9;
+        border-radius: 30px;
+        padding: 6px;
+        display: inline-flex;
+        border: 1px solid #cbd5e1;
+    }
+
+    .btn-tab {
+        background: transparent;
+        border: none;
+        border-radius: 24px;
+        padding: 10px 24px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #64748b;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-tab:hover {
+        color: var(--primary-dark);
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-tab.active {
+        background: var(--primary);
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(30, 60, 114, 0.15);
+    }
+
+    /* TABLE */
+    .table {
+        margin-bottom: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+    }
+
+    .table thead {
+        background: var(--primary);
+        color: white;
+    }
+
+    .table th {
+        padding: 14px 16px;
+        font-weight: 600;
+    }
+
+    .table td {
+        vertical-align: middle;
+        padding: 12px 16px;
+    }
+
+    .btn-save {
+        background: #10b981;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+
+    .btn-save:hover {
+        background: #059669;
+    }
+
+    .btn-download {
+        background: #3b82f6;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+
+    .btn-download:hover {
+        background: #2563eb;
+    }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<section class="header-section">
-<a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
-<h1><i class="fa-solid fa-calendar-check"></i> Attendance System</h1>
-<p>Sivani Coaching Center</p>
-</section>
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item active">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-<div class="container">
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Attendance Logging & History</h1>
+            <p class="welcome-desc">Log morning and evening student shifts or inspect past logging directories.</p>
+        </section>
 
-<div class="main-box">
+        <!-- Main Card List -->
+        <section class="dashboard-body">
+            <!-- Mode Switcher Tabs -->
+            <div class="d-flex justify-content-center mb-4">
+                <div class="btn-group-toggle">
+                    <button id="tabMark" class="btn-tab active" onclick="switchMode('mark')">
+                        <i class="fa-solid fa-pen-to-square"></i> Mark Attendance
+                    </button>
+                    <button id="tabHistory" class="btn-tab" onclick="switchMode('history')">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Attendance History
+                    </button>
+                </div>
+            </div>
 
-<div class="date-box" id="todayDate"></div>
+            <!-- Date Carousel Selector -->
+            <div class="date-carousel-container">
+                <button class="date-nav-btn" onclick="slideDates(-1)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <div class="date-slider" id="dateSlider">
+                    <!-- Date cards will be dynamically populated by JS -->
+                </div>
+                
+                <button class="date-nav-btn" onclick="slideDates(1)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
 
-<table class="table table-bordered text-center">
-<thead>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Class</th>
-<th>Attendance</th>
-</tr>
-</thead>
+            <!-- Shift Selector Cards -->
+            <div class="shift-cards-container" id="shiftSelectorSection">
+                <div class="shift-card active" id="shiftMorning" onclick="setShift('Morning')">
+                    <div class="shift-icon-wrapper">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <div class="shift-info">
+                        <span class="shift-title">Morning Shift</span>
+                        <span class="shift-time">09:00 AM - 01:00 PM</span>
+                    </div>
+                </div>
+                
+                <div class="shift-card" id="shiftEvening" onclick="setShift('Evening')">
+                    <div class="shift-icon-wrapper">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <div class="shift-info">
+                        <span class="shift-title">Evening Shift</span>
+                        <span class="shift-time">04:00 PM - 08:00 PM</span>
+                    </div>
+                </div>
+            </div>
 
-<tbody id="adminTable"></tbody>
-</table>
+            <div class="table-responsive">
+                <table class="table table-hover text-center align-middle">
+                    <thead id="tableHeader">
+                        <!-- Header will be dynamically populated -->
+                    </thead>
+                    <tbody id="adminTable"></tbody>
+                </table>
+            </div>
 
-<div class="text-center mt-4">
-
-<button class="btn-save" onclick="saveAllAttendance()">
-Save Attendance
-</button>
-
-<button class="btn-download ms-2" onclick="downloadExcel()">
-Download Excel
-</button>
-
-<a href="index.html" class="btn btn-dark ms-2">
-Admin Home
-</a>
-
-</div>
-
-</div>
-</div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button class="btn-save" id="saveBtn" onclick="saveAllAttendance()">
+                    <i class="fa-solid fa-floppy-disk me-2"></i>Save Attendance
+                </button>
+                <button class="btn-download" onclick="downloadExcel()">
+                    <i class="fa-solid fa-file-excel me-2"></i>Download Excel
+                </button>
+            </div>
+        </section>
+    </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 
 <script>
 
-// TODAY
-let today = new Date();
-let dateKey = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-let dayName = today.toLocaleDateString('en-US',{weekday:'long'});
-
-document.getElementById("todayDate").innerHTML =
-`${dayName} - ${dateKey}`;
-
-// STUDENTS
+// STATE MANAGEMENT
+let currentMode = 'mark'; // 'mark' or 'history'
+let baseDate = new Date();
+let selectedDate = new Date();
+let dateKey = '';
+let currentSession = 'Morning';
 let students = [];
 
-loadTable();
+// URL INITIALIZATION
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode') || 'mark';
+    switchMode(mode);
+});
 
-async function loadTable(){
-
-let table = document.getElementById("adminTable");
-table.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
-
-const { data: studentsData, error: studentError } = await _supabase
-    .from('students')
-    .select('*')
-    .order('student_id', { ascending: true });
-
-if (studentError) {
-    console.error("Error loading students:", studentError);
-    table.innerHTML = "<tr><td colspan='4' class='text-danger'>Error loading students</td></tr>";
-    return;
+// SWITCH WORKSPACE MODE
+function switchMode(mode) {
+    currentMode = mode;
+    
+    // Toggle active tab visual classes
+    document.getElementById("tabMark").classList.remove("active");
+    document.getElementById("tabHistory").classList.remove("active");
+    
+    if (mode === 'mark') {
+        document.getElementById("tabMark").classList.add("active");
+        document.getElementById("shiftSelectorSection").style.display = "flex";
+        document.getElementById("saveBtn").style.display = "inline-block";
+    } else {
+        document.getElementById("tabHistory").classList.add("active");
+        document.getElementById("shiftSelectorSection").style.display = "none";
+        document.getElementById("saveBtn").style.display = "none";
+    }
+    
+    renderTableHeader();
+    
+    // Auto-select today if date is empty
+    if (!dateKey) {
+        let todayStr = baseDate.getFullYear() + '-' + String(baseDate.getMonth() + 1).padStart(2, '0') + '-' + String(baseDate.getDate()).padStart(2, '0');
+        selectDate(todayStr);
+    } else {
+        loadTable();
+    }
 }
 
-students = studentsData;
+// DYNAMIC HEADER GENERATOR
+function renderTableHeader() {
+    const header = document.getElementById("tableHeader");
+    if (currentMode === 'mark') {
+        header.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Attendance</th>
+            </tr>
+        `;
+    } else {
+        header.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Morning Attendance</th>
+                <th>Evening Attendance</th>
+            </tr>
+        `;
+    }
+}
 
-const { data: attendanceData, error: attError } = await _supabase
-    .from('attendance')
-    .select('*')
-    .eq('date', dateKey);
+function formatDateLabel(d) {
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    return d.toLocaleDateString('en-US', options);
+}
 
-let todayAtt = {};
-if (attendanceData) {
-    attendanceData.forEach(r => {
-        todayAtt[r.student_id] = r.status;
+function formatDayName(d) {
+    const options = { weekday: 'short' };
+    return d.toLocaleDateString('en-US', options);
+}
+
+function renderDateSlider() {
+    const slider = document.getElementById("dateSlider");
+    slider.innerHTML = "";
+    
+    for (let i = -2; i <= 2; i++) {
+        let d = new Date(baseDate);
+        d.setDate(baseDate.getDate() + i);
+        
+        let yyyy = d.getFullYear();
+        let mm = String(d.getMonth() + 1).padStart(2, '0');
+        let dd = String(d.getDate()).padStart(2, '0');
+        let key = `${yyyy}-${mm}-${dd}`;
+        
+        let isToday = (new Date().toDateString() === d.toDateString());
+        let isSelected = (selectedDate.toDateString() === d.toDateString());
+        
+        let topText = isToday ? "Today" : formatDayName(d);
+        let bottomText = isToday ? `${formatDayName(d)} ${formatDateLabel(d)}` : formatDateLabel(d);
+        
+        let activeClass = isSelected ? "active" : "";
+        
+        slider.innerHTML += `
+            <div class="date-card ${activeClass}" onclick="selectDate('${key}')">
+                <div class="day-label">${topText}</div>
+                <div class="date-label">${bottomText}</div>
+            </div>
+        `;
+    }
+}
+
+function selectDate(key) {
+    let parts = key.split('-');
+    selectedDate = new Date(parts[0], parts[1] - 1, parts[2]);
+    dateKey = key;
+    renderDateSlider();
+    loadTable();
+}
+
+function slideDates(direction) {
+    baseDate.setDate(baseDate.getDate() + direction);
+    renderDateSlider();
+}
+
+function setShift(sessionName) {
+    currentSession = sessionName;
+    
+    document.getElementById("shiftMorning").classList.remove("active");
+    document.getElementById("shiftEvening").classList.remove("active");
+    
+    if (sessionName === 'Morning') {
+        document.getElementById("shiftMorning").classList.add("active");
+    } else {
+        document.getElementById("shiftEvening").classList.add("active");
+    }
+    
+    loadTable();
+}
+
+// DYNAMIC ROUTER FOR LOADING TABLE
+async function loadTable() {
+    if (currentMode === 'mark') {
+        await loadMarkingTable();
+    } else {
+        await loadHistoryTable();
+    }
+}
+
+// 1. MARK ATTENDANCE TABLE LOADER
+async function loadMarkingTable() {
+    let table = document.getElementById("adminTable");
+    table.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
+
+    const { data: studentsData, error: studentError } = await _supabase
+        .from('students')
+        .select('*')
+        .eq('status', 'Active')
+        .order('student_id', { ascending: true });
+
+    if (studentError) {
+        console.error("Error loading students:", studentError);
+        table.innerHTML = "<tr><td colspan='4' class='text-danger'>Error loading students</td></tr>";
+        return;
+    }
+
+    students = studentsData;
+
+    let session = currentSession;
+
+    const { data: attendanceData, error: attError } = await _supabase
+        .from('attendance')
+        .select('*')
+        .eq('date', dateKey)
+        .eq('session', session);
+
+    let todayAtt = {};
+    if (attendanceData) {
+        attendanceData.forEach(r => {
+            todayAtt[r.student_id] = r.status;
+        });
+    }
+
+    table.innerHTML = "";
+
+    students.forEach((s, i) => {
+        let status = todayAtt[s.student_id] || "Present";
+
+        table.innerHTML += `
+            <tr>
+                <td>${s.student_id}</td>
+                <td>${s.name}</td>
+                <td>${s.student_class}</td>
+                <td>
+                    <select id="att${i}" class="form-select">
+                        <option ${status === 'Present' ? 'selected' : ''}>Present</option>
+                        <option ${status === 'Absent' ? 'selected' : ''}>Absent</option>
+                    </select>
+                </td>
+            </tr>
+        `;
     });
 }
 
-table.innerHTML = "";
+// 2. VIEW ATTENDANCE HISTORY TABLE LOADER
+async function loadHistoryTable() {
+    let table = document.getElementById("adminTable");
+    table.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
 
-students.forEach((s,i)=>{
+    const { data: studentsData, error: studentError } = await _supabase
+        .from('students')
+        .select('*')
+        .order('student_id', { ascending: true });
 
-let status = todayAtt[s.student_id] || "Present";
+    if (studentError) {
+        console.error("Error loading students:", studentError);
+        table.innerHTML = "<tr><td colspan='5' class='text-danger'>Error loading students</td></tr>";
+        return;
+    }
 
-table.innerHTML += `
-<tr>
-<td>${s.student_id}</td>
-<td>${s.name}</td>
-<td>${s.student_class}</td>
-<td>
-<select id="att${i}" class="form-select">
-<option ${status === 'Present' ? 'selected' : ''}>Present</option>
-<option ${status === 'Absent' ? 'selected' : ''}>Absent</option>
-</select>
-</td>
-</tr>
-`;
+    const { data: attendanceData, error: attError } = await _supabase
+        .from('attendance')
+        .select('*')
+        .eq('date', dateKey);
 
-});
+    let todayAtt = {};
+    if (attendanceData) {
+        attendanceData.forEach(r => {
+            if (!todayAtt[r.student_id]) {
+                todayAtt[r.student_id] = { morning: 'Not Marked', evening: 'Not Marked' };
+            }
+            if (r.session === 'Morning') {
+                todayAtt[r.student_id].morning = r.status;
+            } else if (r.session === 'Evening') {
+                todayAtt[r.student_id].evening = r.status;
+            }
+        });
+    }
 
+    // Filter roster to active students OR inactive students who have attendance logs on the selected date
+    students = studentsData.filter(s => s.status === 'Active' || todayAtt[s.student_id]);
+
+    table.innerHTML = "";
+
+    students.forEach((s, i) => {
+        let att = todayAtt[s.student_id] || { morning: 'Not Marked', evening: 'Not Marked' };
+        let mBadge = att.morning === 'Present' ? 'bg-success' : (att.morning === 'Absent' ? 'bg-danger' : 'bg-secondary');
+        let eBadge = att.evening === 'Present' ? 'bg-success' : (att.evening === 'Absent' ? 'bg-danger' : 'bg-secondary');
+
+        table.innerHTML += `
+            <tr>
+                <td>${s.student_id}</td>
+                <td>${s.name}</td>
+                <td>${s.student_class}</td>
+                <td><span class="badge ${mBadge}">${att.morning}</span></td>
+                <td><span class="badge ${eBadge}">${att.evening}</span></td>
+            </tr>
+        `;
+    });
 }
 
 // SAVE DAY WISE
-async function saveAllAttendance(){
+async function saveAllAttendance() {
+    let session = currentSession;
+    let upsertData = [];
 
-let upsertData = [];
+    students.forEach((s, i) => {
+        upsertData.push({
+            date: dateKey,
+            student_id: s.student_id,
+            session: session,
+            status: document.getElementById("att" + i).value
+        });
+    });
 
-students.forEach((s,i)=>{
+    const { error } = await _supabase
+        .from('attendance')
+        .upsert(upsertData, { onConflict: 'date,student_id,session' });
 
-upsertData.push({
-date: dateKey,
-student_id: s.student_id,
-status: document.getElementById("att"+i).value
-});
+    if (error) {
+        alert("Error saving attendance: " + error.message);
+        return;
+    }
 
-});
-
-const { error } = await _supabase
-    .from('attendance')
-    .upsert(upsertData, { onConflict: 'date,student_id' });
-
-if (error) {
-    alert("Error saving attendance: " + error.message);
-    return;
-}
-
-alert("Saved for " + dateKey);
-
+    alert("Saved for " + dateKey + " (" + session + " Shift)");
 }
 
 // EXPORT ALL
-async function downloadExcel(){
+async function downloadExcel() {
+    const { data, error } = await _supabase
+        .from('attendance')
+        .select(`
+            date,
+            session,
+            status,
+            student_id,
+            students (
+                name,
+                student_class
+            )
+        `);
 
-const { data, error } = await _supabase
-    .from('attendance')
-    .select(`
-        date,
-        status,
-        student_id,
-        students (
-            name,
-            student_class
-        )
-    `);
+    if (error) {
+        alert("Error exporting attendance: " + error.message);
+        return;
+    }
 
-if (error) {
-    alert("Error exporting attendance: " + error.message);
-    return;
-}
+    let exportData = data.map(r => ({
+        Date: r.date,
+        Session: r.session || 'Morning',
+        ID: r.student_id,
+        Name: r.students ? r.students.name : 'Unknown',
+        Class: r.students ? r.students.student_class : 'Unknown',
+        Status: r.status
+    }));
 
-let exportData = data.map(r => ({
-    Date: r.date,
-    ID: r.student_id,
-    Name: r.students ? r.students.name : 'Unknown',
-    Class: r.students ? r.students.student_class : 'Unknown',
-    Status: r.status
-}));
+    let ws = XLSX.utils.json_to_sheet(exportData);
+    let wb = XLSX.utils.book_new();
 
-let ws = XLSX.utils.json_to_sheet(exportData);
-let wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Attendance");
 
-XLSX.utils.book_append_sheet(wb, ws, "Attendance");
-
-XLSX.writeFile(wb, "Attendance_Full_Backup.xlsx");
-
+    XLSX.writeFile(wb, "Attendance_Full_Backup.xlsx");
 }
 
 </script>

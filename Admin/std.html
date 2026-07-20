@@ -12,231 +12,352 @@
     <!-- Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-
-        body{
-            background:linear-gradient(135deg,#1e3c72,#2a5298);
-            min-height:100vh;
-            font-family:Arial, sans-serif;
+        :root {
+            --primary: #1e3c72;
+            --primary-dark: #122548;
+            --accent: #3b82f6;
+            --bg-light: #f4f7fe;
+            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+            --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+            --sidebar-width: 280px;
         }
 
-        .main-box{
-            background:white;
-            border-radius:20px;
-            padding:30px;
-            box-shadow:0px 0px 20px rgba(0,0,0,0.2);
-            position: relative;
+        * {
+            font-family: 'Outfit', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.25s ease;
         }
 
-        .back-home-btn{
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: #f4f6f9;
-            color: #1e3c72;
-            border: 1px solid #ddd;
-            padding: 8px 16px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
+        body {
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR STYLE */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            padding: 40px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
             z-index: 100;
-            transition: 0.3s;
         }
 
-        .back-home-btn:hover{
-            background: #1e3c72;
+        .sidebar-brand-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-dark);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2.1rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
+        }
+
+        .sidebar-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #5c6f84;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            gap: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item i {
+            font-size: 1.15rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-item:hover {
+            color: var(--primary-dark);
+            background: #f1f4f9;
+        }
+
+        .sidebar-item.active {
+            background: #d1e4ff;
+            color: #0c4a9c;
+        }
+
+        /* MAIN CONTENT STYLE */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-desc {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        .dashboard-body {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            flex-grow: 1;
+        }
+
+        .search-box {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .form-control {
+            height: 50px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: none;
+        }
+
+        .card-box {
+            border-radius: 20px;
             color: white;
-            transform: translateX(-3px);
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .title{
-            color:#1e3c72;
-            font-weight:bold;
+        .present-card {
+            background: linear-gradient(135deg, #0f9b0f, #22c55e);
         }
 
-        .search-box{
-            background:#f4f6f9;
-            border-radius:15px;
-            padding:20px;
+        .absent-card {
+            background: linear-gradient(135deg, #dc2626, #f87171);
         }
 
-        .card-box{
-            border-radius:20px;
-            color:white;
-            padding:20px;
-            margin-top:20px;
+        .percentage-card {
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
         }
 
-        .present-card{
-            background:linear-gradient(135deg,#11998e,#38ef7d);
+        .card-box h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 8px;
         }
 
-        .absent-card{
-            background:linear-gradient(135deg,#ff416c,#ff4b2b);
+        .card-box h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0;
         }
 
-        .percentage-card{
-            background:linear-gradient(135deg,#4776E6,#8E54E9);
+        .table-responsive {
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
         }
 
-        .table th{
-            background:#1e3c72;
-            color:white;
+        .table {
+            margin-bottom: 0;
         }
 
-        .present{
-            color:green;
-            font-weight:bold;
+        .table thead {
+            background: var(--primary);
+            color: white;
         }
 
-        .absent{
-            color:red;
-            font-weight:bold;
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 14px 16px;
         }
 
-        .student-name{
-            color:#2a5298;
-            font-weight:bold;
+        .present {
+            color: #10b981;
+            font-weight: 700;
         }
 
+        .absent {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .student-name {
+            color: var(--primary-dark);
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
     </style>
 
 </head>
 <body>
 
-<div class="container py-5">
-
-    <div class="main-box">
-
-        <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
-
-        <h2 class="text-center title mb-4">
-            <i class="fa-solid fa-user-graduate"></i>
-            Student Attendance Portal
-        </h2>
-
-        <!-- SEARCH -->
-
-        <div class="search-box">
-
-            <div class="row g-3">
-
-                <div class="col-md-9">
-
-                    <input type="text"
-                           id="studentId"
-                           class="form-control form-control-lg"
-                           placeholder="Enter Student ID">
-
-                </div>
-
-                <div class="col-md-3 d-flex gap-2">
-
-                    <button class="btn btn-primary btn-lg w-100"
-                            onclick="searchAttendance()">
-
-                        View Attendance
-
-                    </button>
-
-                    <a href="index.html" class="btn btn-dark btn-lg" title="Admin Home">
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-
-                </div>
-
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
             </div>
-
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
         </div>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item active">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-        <!-- STUDENT INFO -->
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Parent Search Portal</h1>
+            <p class="welcome-desc">Query individual student logs, marks indices, and attendance percentages instantly.</p>
+        </section>
 
-        <div id="studentResult" style="display:none;">
-
-            <div class="text-center mt-4">
-
-                <h3 class="student-name"
-                    id="studentName"></h3>
-
+        <!-- Main Card List -->
+        <section class="dashboard-body">
+            <div class="search-box">
+                <div class="row g-3">
+                    <div class="col-md-9">
+                        <input type="text" id="studentId" class="form-control form-control-lg" placeholder="Enter Student ID">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary btn-lg w-100 fw-bold" style="height:50px; border-radius:12px;" onclick="searchAttendance()">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>Search Record
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- CARDS -->
-
-            <div class="row mt-4">
-
-                <div class="col-md-4">
-
-                    <div class="card-box present-card">
-
-                        <h4>Present Days</h4>
-
-                        <h1 id="presentCount">0</h1>
-
-                    </div>
-
+            <!-- STUDENT INFO RESULT -->
+            <div id="studentResult" style="display:none;">
+                <div class="text-center mt-5">
+                    <h3 class="student-name" id="studentName"></h3>
                 </div>
 
-                <div class="col-md-4">
-
-                    <div class="card-box absent-card">
-
-                        <h4>Absent Days</h4>
-
-                        <h1 id="absentCount">0</h1>
-
+                <!-- METRICS CARDS -->
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card-box present-card">
+                            <h4>Present Days</h4>
+                            <h1 id="presentCount">0</h1>
+                        </div>
                     </div>
-
+                    <div class="col-md-4">
+                        <div class="card-box absent-card">
+                            <h4>Absent Days</h4>
+                            <h1 id="absentCount">0</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box percentage-card">
+                            <h4>Attendance %</h4>
+                            <h1 id="attendancePercentage">0%</h1>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-
-                    <div class="card-box percentage-card">
-
-                        <h4>Attendance %</h4>
-
-                        <h1 id="attendancePercentage">0%</h1>
-
-                    </div>
-
+                <!-- TABLE -->
+                <div class="table-responsive mt-5">
+                    <table class="table table-hover align-middle text-center">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Date</th>
+                                <th>Session</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTable"></tbody>
+                    </table>
                 </div>
-
             </div>
-
-            <!-- TABLE -->
-
-            <div class="table-responsive mt-5">
-
-                <table class="table table-bordered table-hover">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Day</th>
-                            <th>Date</th>
-                            <th>Status</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="attendanceTable">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+        </section>
+    </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
@@ -259,6 +380,7 @@ async function searchAttendance(){
         .select(`
             date,
             status,
+            session,
             students (
                 name,
                 student_class
@@ -308,7 +430,8 @@ async function searchAttendance(){
         }
 
         // Get day name
-        let dateObj = new Date(record.date);
+        let parts = record.date.split('-');
+        let dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
         let dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
 
         table.innerHTML += `
@@ -318,6 +441,8 @@ async function searchAttendance(){
                 <td>${dayName}</td>
 
                 <td>${record.date}</td>
+
+                <td>${record.session || 'Morning'}</td>
 
                 <td class="${
                     record.status == 'Present'

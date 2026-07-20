@@ -11,108 +11,162 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary: #1e3c72;
+            --primary-dark: #122548;
+            --accent: #3b82f6;
+            --bg-light: #f4f7fe;
+            --card-shadow: 0 10px 30px rgba(30, 60, 114, 0.04);
+            --card-hover-shadow: 0 15px 35px rgba(30, 60, 114, 0.08);
+            --sidebar-width: 280px;
+        }
+
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.25s ease;
         }
 
         body {
-            background: #f4f7fe;
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
         }
 
-        /* HEADER */
-        .header-section {
-            background: linear-gradient(135deg, #1b2a52, #29417d);
-            color: white;
+        /* SIDEBAR STYLE */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar-brand-box {
             text-align: center;
-            padding: 55px 20px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
+            margin-bottom: 40px;
         }
 
-        .header-section h1 {
-            font-size: 42px;
-            font-weight: 700;
-        }
-
-        .header-section p {
-            font-size: 17px;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
-
-        .back-home-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 8px 16px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 100;
-            transition: 0.3s;
-        }
-
-        .back-home-btn:hover {
-            background: white;
-            color: #1b2a52;
-            transform: translateX(-3px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-new-admission {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 100;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
-        }
-
-        .btn-new-admission:hover {
-            background: #218838;
-            transform: scale(1.03);
-            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
-        }
-
-        /* MAIN BOX */
-        .main-box {
-            background: white;
-            margin-top: 40px;
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .section-title {
-            color: #1b2a52;
-            font-weight: 700;
-            margin-bottom: 25px;
+        .sidebar-logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-dark);
+            border-radius: 18px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2.1rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 10px 20px rgba(18, 37, 72, 0.15);
+        }
+
+        .sidebar-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #5c6f84;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            gap: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item i {
+            font-size: 1.15rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-item:hover {
+            color: var(--primary-dark);
+            background: #f1f4f9;
+        }
+
+        .sidebar-item.active {
+            background: #d1e4ff;
+            color: #0c4a9c;
+        }
+
+        /* MAIN CONTENT STYLE */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-desc {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        /* CARD ROW/INFO */
+        .dashboard-body {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            flex-grow: 1;
+        }
+
+        .section-heading {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
         }
 
         /* TABLE */
@@ -121,6 +175,7 @@
             border-radius: 18px;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--card-shadow);
         }
 
         .table {
@@ -133,13 +188,11 @@
         }
 
         .table th {
-            padding: 18px;
-            text-align: center;
+            padding: 16px 18px;
             font-weight: 600;
         }
 
         .table td {
-            text-align: center;
             vertical-align: middle;
             padding: 15px;
         }
@@ -164,24 +217,24 @@
 
         /* ACTION BUTTONS */
         .btn-profile {
-            background: #0d6efd;
+            background: #3b82f6;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 8px 14px;
             font-weight: 600;
             margin-right: 5px;
         }
 
         .btn-profile:hover {
-            background: #0b5ed7;
+            background: #2563eb;
         }
 
         .btn-update {
             background: #ffc107;
             color: black;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 8px 14px;
             font-weight: 600;
             margin-right: 5px;
@@ -191,17 +244,28 @@
             background: #e0a800;
         }
 
-        .btn-delete {
-            background: #dc3545;
+        .btn-status-toggle {
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 8px 14px;
             font-weight: 600;
         }
-
-        .btn-delete:hover {
+        
+        .btn-deactivate {
+            background: #dc3545;
+        }
+        
+        .btn-deactivate:hover {
             background: #bb2d3b;
+        }
+        
+        .btn-activate {
+            background: #10b981;
+        }
+        
+        .btn-activate:hover {
+            background: #059669;
         }
 
         /* MODALS & FORMS */
@@ -345,183 +409,360 @@
 
 <body>
 
-    <!-- HEADER -->
-    <section class="header-section">
-        <a href="index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Home</a>
-        <button class="btn-new-admission" onclick="openAddModal()">
-            <i class="fa-solid fa-plus"></i> New Admission
-        </button>
-        <h1>
-            <i class="fa-solid fa-user-graduate"></i>
-            Student Directory
-        </h1>
-        <p>
-            Sivani Coaching Center Student Admissions & Registration Portal
-        </p>
-    </section>
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-brand-box">
+            <div class="sidebar-logo-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2 class="sidebar-title">Sivani Coaching</h2>
+            <span class="sidebar-subtitle">Admin Dashboard</span>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">
+                <i class="fa-solid fa-square-poll-vertical"></i> Overview
+            </a>
+            <a href="students.html" class="sidebar-item active">
+                <i class="fa-solid fa-user-graduate"></i> Student Directory
+            </a>
+            <a href="admin.html?mode=mark" class="sidebar-item">
+                <i class="fa-solid fa-calendar-check"></i> Attendance
+            </a>
+            <a href="mark.html" class="sidebar-item">
+                <i class="fa-solid fa-star"></i> Marks
+            </a>
+            <a href="stat.html" class="sidebar-item">
+                <i class="fa-solid fa-box-archive"></i> Stationery
+            </a>
+            <a href="fees.html" class="sidebar-item">
+                <i class="fa-solid fa-money-bill-wave"></i> Finances
+            </a>
+            <a href="std.html" class="sidebar-item">
+                <i class="fa-solid fa-magnifying-glass"></i> Student Search
+            </a>
+        </nav>
+    </aside>
 
-    <!-- MAIN DIRECTORY TABLE -->
-    <div class="container">
-        <div class="main-box">
-            <h3 class="section-title">
-                <i class="fa-solid fa-users"></i>
-                Admitted Student Directory
-            </h3>
+    <!-- RIGHT MAIN CONTENT PANEL -->
+    <main class="main-content">
+        <!-- Welcome Header -->
+        <section class="welcome-section d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <h1 class="welcome-title">Student Directory</h1>
+                <p class="welcome-desc">Manage admissions, register new student details, or inspect profiles.</p>
+            </div>
+            <button class="btn btn-success fw-bold px-4 py-2" style="border-radius:12px; box-shadow:0 4px 12px rgba(40, 167, 69, 0.15);" onclick="openAddModal()">
+                <i class="fa-solid fa-user-plus me-2"></i>New Admission
+            </button>
+        </section>
 
-            <!-- TABLE -->
-            <div class="table-box">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Photo</th>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Class & Board</th>
-                                <th>WhatsApp</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="studentTable">
-                            <tr>
-                                <td colspan="6">Loading Directory...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- Main Card List -->
+        <section class="dashboard-body">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h3 class="section-heading mb-0"><i class="fa-solid fa-users me-2"></i>Admitted Student Directory</h3>
+                
+                <!-- Status filter selector -->
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="fw-semibold text-secondary mb-0" style="font-size:0.9rem;">Filter Status:</label>
+                    <select id="statusFilter" class="form-select form-select-sm" style="width: 140px; height: 36px; border-radius: 8px;" onchange="loadStudents()">
+                        <option value="All">All Students</option>
+                        <option value="Active" selected>Active Only</option>
+                        <option value="Inactive">Inactive Only</option>
+                    </select>
                 </div>
             </div>
-
-            <!-- BACK BUTTON -->
-            <div class="text-center mt-5">
-                <a href="index.html" class="btn btn-dark btn-lg px-5 py-3 rounded-pill">
-                    <i class="fa-solid fa-house me-2"></i>
-                    Back to Dashboard
-                </a>
+            
+            <div class="table-responsive table-box mt-3">
+                <table class="table table-hover text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Class & Board</th>
+                            <th>Status</th>
+                            <th>WhatsApp</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable">
+                        <tr>
+                            <td colspan="7">Loading Directory...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        © 2026 Tuition Center Management System
-    </div>
+        </section>
+    </main>
 
     <!-- ========================================================= -->
     <!-- 1. NEW REGISTRATION & UPDATE MODAL -->
     <!-- ========================================================= -->
     <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="studentModalLabel"><i class="fa-solid fa-user-plus me-2"></i>New Student Admission</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="studentForm" onsubmit="saveStudent(event)">
-                        <!-- Photo Upload Block -->
-                        <div class="photo-preview-container">
-                            <div id="photoPlaceholder" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1b2a52; display: flex; align-items: center; justify-content: center; background: #eef3ff; color: #1b2a52; font-size: 2.5rem; margin-bottom: 10px;">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                            <img id="photoPreview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #1b2a52; display: none; margin-bottom: 10px;">
-                            <input type="file" id="studentPhoto" accept="image/*" class="form-control form-control-sm" style="max-width: 200px;" onchange="previewPhoto(event)">
-                        </div>
+                    <div class="container py-2">
+                        <!-- Navigation Stepper Tabs -->
+                        <ul class="nav nav-pills nav-justified mb-4 p-1 bg-light" style="border-radius: 12px; border: 1px solid #e2e8f0;" id="admissionTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active fw-bold py-2.5" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal-section" type="button" role="tab" aria-controls="personal-section" aria-selected="true" style="border-radius: 10px;">
+                                    <i class="fa-solid fa-circle-user me-2"></i>Personal Details
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold py-2.5" id="fees-tab" data-bs-toggle="tab" data-bs-target="#fees-section" type="button" role="tab" aria-controls="fees-section" aria-selected="false" style="border-radius: 10px;">
+                                    <i class="fa-solid fa-graduation-cap me-2"></i>Fees & Academic
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold py-2.5" id="parents-tab" data-bs-toggle="tab" data-bs-target="#parents-section" type="button" role="tab" aria-controls="parents-section" aria-selected="false" style="border-radius: 10px;">
+                                    <i class="fa-solid fa-address-book me-2"></i>Parent Details
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold py-2.5" id="exams-tab" data-bs-toggle="tab" data-bs-target="#exams-section" type="button" role="tab" aria-controls="exams-section" aria-selected="false" style="border-radius: 10px;">
+                                    <i class="fa-solid fa-gears me-2"></i>Exam Structure
+                                </button>
+                            </li>
+                        </ul>
 
-                        <!-- Section 1: Personal Details -->
-                        <h6 class="form-section-title"><i class="fa-solid fa-circle-user me-2"></i>Personal Details</h6>
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Student ID *</label>
-                                <input type="text" id="studentId" class="form-control" placeholder="e.g. 1001" required>
-                            </div>
-                            <div class="col-md-8">
-                                <label class="form-label fw-semibold">Student Name *</label>
-                                <input type="text" id="studentName" class="form-control" placeholder="Enter Full Name" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Date of Birth *</label>
-                                <input type="date" id="studentDob" class="form-control" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Gender *</label>
-                                <select id="studentGender" class="form-select" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Board *</label>
-                                <select id="studentBoard" class="form-select" required>
-                                    <option value="State Board">State Board</option>
-                                    <option value="CBSE">CBSE</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label fw-semibold">School Name *</label>
-                                <input type="text" id="studentSchool" class="form-control" placeholder="Enter Current School Name" required>
-                            </div>
-                        </div>
+                        <form id="studentForm" onsubmit="saveStudent(event)">
+                            <div class="tab-content" id="admissionTabsContent">
+                                <!-- SECTION 1: PERSONAL DETAILS -->
+                                <div class="tab-pane fade show active" id="personal-section" role="tabpanel" aria-labelledby="personal-tab">
+                                    <!-- Photo Upload Block -->
+                                    <div class="photo-preview-container text-center mb-4">
+                                        <div id="photoPlaceholder" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1b2a52; display: inline-flex; align-items: center; justify-content: center; background: #eef3ff; color: #1b2a52; font-size: 2.5rem; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(27, 42, 82, 0.15);">
+                                            <i class="fa-solid fa-user"></i>
+                                        </div>
+                                        <img id="photoPreview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #1b2a52; display: none; margin-bottom: 10px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 15px rgba(27, 42, 82, 0.15);">
+                                        <div class="d-flex justify-content-center align-items-center flex-column gap-2">
+                                            <label for="studentPhoto" class="btn btn-outline-primary btn-sm fw-bold px-3 py-2" style="border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+                                                <i class="fa-solid fa-camera me-1.5"></i>Upload Photo
+                                            </label>
+                                            <input type="file" id="studentPhoto" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
+                                            <span id="photoFileName" class="text-muted small" style="display: none;">No file chosen</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-semibold">Student ID *</label>
+                                            <input type="text" id="studentId" class="form-control" placeholder="e.g. 1001" required>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label class="form-label fw-semibold">Student Name *</label>
+                                            <input type="text" id="studentName" class="form-control" placeholder="Enter Full Name" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-semibold">Date of Birth *</label>
+                                            <input type="date" id="studentDob" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-semibold">Gender *</label>
+                                            <select id="studentGender" class="form-select" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-semibold">Board *</label>
+                                            <select id="studentBoard" class="form-select" onchange="verifyGroupSubjects()" required>
+                                                <option value="State Board">State Board</option>
+                                                <option value="CBSE">CBSE</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-semibold">School Name *</label>
+                                            <input type="text" id="studentSchool" class="form-control" placeholder="Enter Current School Name" oninput="loadStudentSchoolExamsUI()" required>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- Section 2: Academic & Fees -->
-                        <h6 class="form-section-title"><i class="fa-solid fa-graduation-cap me-2"></i>Academic & Fees</h6>
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-3">
-                                <label class="form-label fw-semibold">Class Name *</label>
-                                <input type="text" id="studentClass" class="form-control" placeholder="e.g. 10" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label fw-semibold">Joining Date *</label>
-                                <input type="date" id="studentJoinDate" class="form-control" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label fw-semibold">Monthly Fees *</label>
-                                <input type="number" id="studentFees" class="form-control" placeholder="₹ Amount" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label fw-semibold">Advance Amount *</label>
-                                <input type="number" id="studentAdvance" class="form-control" placeholder="₹ Amount" required>
-                            </div>
-                        </div>
+                                <!-- SECTION 2: ACADEMIC & FEES -->
+                                <div class="tab-pane fade" id="fees-section" role="tabpanel" aria-labelledby="fees-tab">
+                                    <div class="row g-3">
+                                        <div class="col-md-2">
+                                            <label class="form-label fw-semibold">Class Name *</label>
+                                            <input type="text" id="studentClass" class="form-control" placeholder="e.g. 10" oninput="verifyGroupSubjects()" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-semibold">Joining Date *</label>
+                                            <input type="date" id="studentJoinDate" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label fw-semibold">Fees *</label>
+                                            <input type="number" id="studentFees" class="form-control" placeholder="₹ Amount" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label fw-semibold">Advance *</label>
+                                            <input type="number" id="studentAdvance" class="form-control" placeholder="₹ Amount" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label fw-semibold">Status *</label>
+                                            <select id="studentStatus" class="form-select" required>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- Section 3: Parent & Contact Details -->
-                        <h6 class="form-section-title"><i class="fa-solid fa-address-book me-2"></i>Parent & Contact Details</h6>
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Father's Name *</label>
-                                <input type="text" id="studentFatherName" class="form-control" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Father's Occupation</label>
-                                <input type="text" id="studentFatherOcc" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Mother's Name *</label>
-                                <input type="text" id="studentMotherName" class="form-control" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Mother's Occupation</label>
-                                <input type="text" id="studentMotherOcc" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Phone Number *</label>
-                                <input type="text" id="studentPhone" class="form-control" placeholder="10 Digit Calling Number" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">WhatsApp Number *</label>
-                                <input type="text" id="studentWhatsapp" class="form-control" placeholder="10 Digit WhatsApp Number" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label fw-semibold">Address *</label>
-                                <textarea id="studentAddress" class="form-control" placeholder="Enter Full Address" required></textarea>
-                            </div>
-                        </div>
+                                <!-- SECTION 3: PARENT DETAILS -->
+                                <div class="tab-pane fade" id="parents-section" role="tabpanel" aria-labelledby="parents-tab">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Father's Name *</label>
+                                            <input type="text" id="studentFatherName" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Father's Occupation</label>
+                                            <input type="text" id="studentFatherOcc" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Mother's Name *</label>
+                                            <input type="text" id="studentMotherName" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Mother's Occupation</label>
+                                            <input type="text" id="studentMotherOcc" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Phone Number *</label>
+                                            <input type="text" id="studentPhone" class="form-control" placeholder="10 Digit Calling Number" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">WhatsApp Number *</label>
+                                            <input type="text" id="studentWhatsapp" class="form-control" placeholder="10 Digit WhatsApp Number" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-semibold">Address *</label>
+                                            <textarea id="studentAddress" class="form-control" placeholder="Enter Full Address" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="d-flex justify-content-end gap-2 mt-4">
-                            <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal" style="border-radius:10px;">Cancel</button>
-                            <button type="submit" id="saveBtn" class="btn btn-primary px-4 py-2" style="background:#1b2a52; border:none; border-radius:10px;">Save Details</button>
-                        </div>
-                    </form>
+                                <!-- SECTION 4: EXAM STRUCTURE -->
+                                <div class="tab-pane fade" id="exams-section" role="tabpanel" aria-labelledby="exams-tab">
+                                    <!-- School Name Indicator -->
+                                    <div class="alert alert-info py-2.5 px-3 mb-3 d-flex align-items-center justify-content-between" style="border-radius: 10px; background: #eef5ff; border: 1px solid #d0e3ff;">
+                                        <span class="fw-semibold text-primary"><i class="fa-solid fa-school me-2"></i>School Name: <span id="examConfigSchoolName" class="text-dark">Default</span></span>
+                                        <span class="badge bg-primary rounded-pill px-2.5 py-1.5 fs-7 fw-bold" style="background:#1b2a52 !important;">Active Structure</span>
+                                    </div>
+
+                                    <!-- Academic Group / Subject Verification Block -->
+                                    <div class="card p-4 mb-3" style="border-radius: 16px; border: 1px solid #e2e8f0; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                                        <div class="row g-4 align-items-start">
+                                            <div class="col-md-5">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <label class="form-label fw-bold mb-0 text-dark" style="font-size:0.95rem;"><i class="fa-solid fa-graduation-cap me-2 text-primary"></i>Choose Group / Class</label>
+                                                    <button type="button" class="btn btn-link btn-sm p-0 fw-bold text-decoration-none text-primary" onclick="toggleCreateGroupForm(true)">
+                                                        <i class="fa-solid fa-plus me-1"></i>Create Group
+                                                    </button>
+                                                </div>
+                                                <select id="examConfigGroupSelect" class="form-select" onchange="verifyGroupSubjects()" style="border-radius:10px; padding: 0.6rem 1rem;">
+                                                    <!-- Filled dynamically from localStorage -->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <label class="form-label fw-bold mb-0 text-dark" style="font-size:0.95rem;"><i class="fa-solid fa-book me-2 text-primary"></i>Verified Subjects</label>
+                                                    <button type="button" class="btn btn-link btn-sm p-0 fw-bold text-decoration-none text-success" onclick="toggleAddExtraSubjectInput(true)">
+                                                        <i class="fa-solid fa-plus me-1"></i>Add Extra Subject
+                                                    </button>
+                                                </div>
+                                                <div id="examConfigSubjectsList" class="d-flex flex-wrap gap-2 mb-2" style="min-height: 42px;">
+                                                    <!-- Dynamic badges for subjects -->
+                                                </div>
+                                                
+                                                <!-- Inline Add Extra Subject Input -->
+                                                <div id="addExtraSubjectSection" class="input-group input-group-sm mt-2" style="display: none; max-width: 280px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden;">
+                                                    <input type="text" id="extraSubjectInput" class="form-control" placeholder="e.g. EVS" onkeydown="handleExtraSubjectKey(event)" style="border: 1px solid #cbd5e1;">
+                                                    <button class="btn btn-success" type="button" onclick="addExtraSubjectToStudent()" style="background:#10b981; border:none; padding:0 15px;"><i class="fa-solid fa-check"></i></button>
+                                                    <button class="btn btn-outline-secondary" type="button" onclick="toggleAddExtraSubjectInput(false)" style="border: 1px solid #cbd5e1; border-left:none;"><i class="fa-solid fa-xmark"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Inline Create Custom Group Section (Hidden by default) -->
+                                        <div id="createCustomGroupForm" class="mt-4 pt-4 border-top" style="display: none; border-color: #f1f5f9 !important;">
+                                            <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-folder-plus me-2 text-primary"></i>Create Custom Group</h6>
+                                            <div class="row g-3 align-items-end">
+                                                <div class="col-md-4">
+                                                    <label class="form-label fw-semibold text-muted small mb-1.5">Group Name</label>
+                                                    <input type="text" id="customGroupNameInput" class="form-control" placeholder="e.g. Pure Science" style="border-radius:8px; padding: 0.5rem 0.8rem; font-size: 0.9rem;">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label fw-semibold text-muted small mb-1.5">Add Subject Name</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="customSubjectNameInput" class="form-control" placeholder="e.g. Zoology" onkeydown="handleCustomSubjectKey(event)" style="border-radius: 8px 0 0 8px; padding: 0.5rem 0.8rem; font-size: 0.9rem; border-right: none;">
+                                                        <button class="btn btn-outline-success" type="button" onclick="addSubjectToCustomList()" style="border-radius: 0 8px 8px 0; border: 1px solid #cbd5e1; border-left: none; padding: 0 15px;">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 d-flex gap-2">
+                                                    <button type="button" class="btn btn-primary w-100 fw-bold" onclick="saveCustomGroup()" style="background:#1b2a52; border:none; border-radius:8px; height:38px; font-size: 0.9rem;">Save</button>
+                                                    <button type="button" class="btn btn-outline-secondary w-100" onclick="toggleCreateGroupForm(false)" style="border-radius:8px; height:38px; font-size: 0.9rem;">Cancel</button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3.5">
+                                                <label class="form-label fw-semibold text-muted small mb-1.5">Subjects to Include:</label>
+                                                <div id="customGroupSubjectsPreview" class="d-flex flex-wrap gap-2">
+                                                    <span class="text-muted small italic">No subjects added yet. Type and press "+" to add.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-muted small"><i class="fa-solid fa-info-circle me-1"></i>Customize the exams and maximum marks for this student's school. These changes apply to all students from this school.</p>
+                                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
+                                        <table class="table table-bordered table-striped align-middle text-center">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Exam Name</th>
+                                                    <th>Max Total Marks per Subject</th>
+                                                    <th style="width: 100px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="admissionConfigExamsList">
+                                                <!-- Dynamic rows of exam settings -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-flex justify-content-start mt-2">
+                                        <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="addAdmissionExamRow()">
+                                            <i class="fa-solid fa-plus me-1"></i>Add Exam Row
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between gap-2 mt-4 pt-3 border-top">
+                                <div>
+                                    <button type="button" id="prevTabBtn" class="btn btn-secondary px-4 py-2" style="border-radius:10px; display: none;" onclick="navigateTab(-1)">
+                                        <i class="fa-solid fa-arrow-left me-1.5"></i>Back
+                                    </button>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal" style="border-radius:10px;">Cancel</button>
+                                    <button type="button" id="nextTabBtn" class="btn btn-primary px-4 py-2" style="background:#3b82f6; border:none; border-radius:10px;" onclick="navigateTab(1)">
+                                        Save & Next<i class="fa-solid fa-arrow-right ms-1.5"></i>
+                                    </button>
+                                    <button type="submit" id="saveBtn" class="btn btn-success px-4 py-2" style="background:#1b2a52; border:none; border-radius:10px; display: none;">
+                                        <i class="fa-solid fa-floppy-disk me-1.5"></i>Save Details
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -531,96 +772,142 @@
     <!-- 2. READ-ONLY PROFILE VIEWER MODAL -->
     <!-- ========================================================= -->
     <div class="modal fade" id="profileViewerModal" tabindex="-1" aria-labelledby="profileViewerLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="profileViewerLabel"><i class="fa-solid fa-address-card me-2"></i>Student Profile Card</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
-                    <div class="p-4">
-                        <!-- Top Header Profile Card -->
-                        <div class="profile-header-card">
-                            <div id="viewAvatarHolder" class="profile-avatar">
-                                <i class="fa-solid fa-user"></i>
+                    <div class="container py-4">
+                        <div class="row g-4">
+                            <!-- Left Column: Avatar & Quick Info -->
+                            <div class="col-md-4 text-center">
+                                <div class="profile-header-card h-100 d-flex flex-column justify-content-center align-items-center mb-0">
+                                    <div id="viewAvatarHolder" class="profile-avatar">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <img id="viewAvatarImg" class="profile-avatar" style="display:none;">
+                                    <h4 class="profile-name" id="viewName">-</h4>
+                                    <span class="profile-class-badge mb-4" id="viewClassBadge">Class -</span>
+                                    
+                                    <div class="w-100 text-start mt-3">
+                                        <h6 class="form-section-title fs-6 mb-2"><i class="fa-solid fa-indian-rupee-sign me-2"></i>Financials</h6>
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Monthly Fees</span>
+                                            <span class="profile-value fw-bold text-success" id="viewFees">₹-</span>
+                                        </div>
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Advance</span>
+                                            <span class="profile-value text-primary" id="viewAdvance">₹-</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <img id="viewAvatarImg" class="profile-avatar" style="display:none;">
-                            <h4 class="profile-name" id="viewName">-</h4>
-                            <span class="profile-class-badge" id="viewClassBadge">Class -</span>
-                        </div>
+                            
+                            <!-- Right Column: Full Details -->
+                            <div class="col-md-8">
+                                <h6 class="form-section-title fs-6 mb-2"><i class="fa-solid fa-user-tag me-2"></i>Admission Metadata</h6>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Student ID</span>
+                                            <span class="profile-value" id="viewId">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Board</span>
+                                            <span class="profile-value" id="viewBoard">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">School</span>
+                                            <span class="profile-value" id="viewSchool">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Joining Date</span>
+                                            <span class="profile-value" id="viewJoinDate">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Date of Birth</span>
+                                            <span class="profile-value" id="viewDob">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Gender</span>
+                                            <span class="profile-value" id="viewGender">-</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- Info Rows -->
-                        <h6 class="form-section-title fs-6 mb-2 mt-3"><i class="fa-solid fa-user-tag me-2"></i>Admission Metadata</h6>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Student ID</span>
-                            <span class="profile-value" id="viewId">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Board / Syllabus</span>
-                            <span class="profile-value" id="viewBoard">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">School Name</span>
-                            <span class="profile-value" id="viewSchool">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Joining Date</span>
-                            <span class="profile-value" id="viewJoinDate">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Date of Birth</span>
-                            <span class="profile-value" id="viewDob">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Gender</span>
-                            <span class="profile-value" id="viewGender">-</span>
-                        </div>
+                                <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-people-roof me-2"></i>Parent Details</h6>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Father</span>
+                                            <span class="profile-value" id="viewFatherName">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Occupation</span>
+                                            <span class="profile-value" id="viewFatherOcc">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Mother</span>
+                                            <span class="profile-value" id="viewMotherName">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Occupation</span>
+                                            <span class="profile-value" id="viewMotherOcc">-</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-indian-rupee-sign me-2"></i>Financials</h6>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Monthly Fees</span>
-                            <span class="profile-value fw-bold text-success" id="viewFees">₹-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Advance Deposited</span>
-                            <span class="profile-value text-primary" id="viewAdvance">₹-</span>
-                        </div>
-
-                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-people-roof me-2"></i>Parent Details</h6>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Father's Name</span>
-                            <span class="profile-value" id="viewFatherName">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Father's Job</span>
-                            <span class="profile-value" id="viewFatherOcc">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Mother's Name</span>
-                            <span class="profile-value" id="viewMotherName">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Mother's Job</span>
-                            <span class="profile-value" id="viewMotherOcc">-</span>
-                        </div>
-
-                        <h6 class="form-section-title fs-6 mb-2 mt-4"><i class="fa-solid fa-map-location-dot me-2"></i>Contact Details</h6>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">Phone Number</span>
-                            <span class="profile-value" id="viewPhone">-</span>
-                        </div>
-                        <div class="profile-detail-row">
-                            <span class="profile-label">WhatsApp Number</span>
-                            <span class="profile-value" id="viewWhatsapp">-</span>
-                        </div>
-                        <div class="profile-detail-row border-0 pb-0">
-                            <span class="profile-label align-self-start">Residence Address</span>
-                            <span class="profile-value" id="viewAddress" style="max-width: 60%; word-break: break-word;">-</span>
+                                <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-map-location-dot me-2"></i>Contact Details</h6>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">Phone</span>
+                                            <span class="profile-value" id="viewPhone">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="profile-detail-row">
+                                            <span class="profile-label">WhatsApp</span>
+                                            <span class="profile-value" id="viewWhatsapp">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="profile-detail-row border-0 pb-0">
+                                            <span class="profile-label align-self-start">Address</span>
+                                            <span class="profile-value text-start" id="viewAddress" style="max-width: 75%; word-break: break-word;">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer border-0 p-3">
-                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal" style="border-radius:10px;">Close Profile Card</button>
+                <div class="modal-footer border-0 p-3 d-flex gap-2">
+                    <button type="button" class="btn btn-warning fw-bold text-dark flex-grow-1" style="border-radius:10px;" onclick="editFromProfileViewer()">
+                        <i class="fa-solid fa-pen me-2"></i>Edit
+                    </button>
+                    <button type="button" id="profileToggleStatusBtn" class="btn flex-grow-1 fw-bold text-white" style="border-radius:10px;" onclick="toggleStatusFromProfileViewer()">
+                        <!-- Set dynamically in JS -->
+                    </button>
+                    <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="modal" style="border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -629,6 +916,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
+    <script src="school-exams.js"></script>
 
     <script>
         let students = [];
@@ -636,17 +924,91 @@
         let isUpdateMode = false;
         let studentModalInstance = null;
         let profileModalInstance = null;
+        let currentViewingIndex = -1;
+        let activeStudentExtraSubjects = [];
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             studentModalInstance = new bootstrap.Modal(document.getElementById('studentModal'));
             profileModalInstance = new bootstrap.Modal(document.getElementById('profileViewerModal'));
+            
+            // Listen to tab shifts to update wizard buttons
+            let tabElements = document.querySelectorAll('#admissionTabs button');
+            tabElements.forEach(tabEl => {
+                tabEl.addEventListener('shown.bs.tab', (event) => {
+                    updateWizardButtons(event.target.id);
+                });
+            });
+            
+            await syncPortalSettingsFromDB();
             loadStudents();
         });
+
+        // WIZARD FOOTER NAVIGATION
+        function navigateTab(direction) {
+            let tabList = ["personal-tab", "fees-tab", "parents-tab", "exams-tab"];
+            let activeTab = document.querySelector('#admissionTabs button.active');
+            if (!activeTab) return;
+            let currentIdx = tabList.indexOf(activeTab.id);
+            
+            if (direction === 1) {
+                // Validate inputs in the current active pane first
+                let activePaneId = activeTab.getAttribute("data-bs-target");
+                let activePane = document.querySelector(activePaneId);
+                let inputs = activePane.querySelectorAll("input[required], select[required], textarea[required]");
+                for (let input of inputs) {
+                    if (!input.checkValidity()) {
+                        input.reportValidity();
+                        return;
+                    }
+                }
+            }
+            
+            let targetIdx = currentIdx + direction;
+            if (targetIdx >= 0 && targetIdx < tabList.length) {
+                let targetTabId = tabList[targetIdx];
+                let targetTabBtn = document.getElementById(targetTabId);
+                if (targetTabBtn) {
+                    let tab = bootstrap.Tab.getInstance(targetTabBtn) || new bootstrap.Tab(targetTabBtn);
+                    tab.show();
+                }
+            }
+        }
+
+        function updateWizardButtons(activeTabId) {
+            let prevBtn = document.getElementById("prevTabBtn");
+            let nextBtn = document.getElementById("nextTabBtn");
+            let saveBtn = document.getElementById("saveBtn");
+            if (!prevBtn || !nextBtn || !saveBtn) return;
+            
+            if (activeTabId === "personal-tab") {
+                prevBtn.style.display = "none";
+                nextBtn.style.display = "inline-block";
+                saveBtn.style.display = "none";
+            } else if (activeTabId === "fees-tab") {
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "inline-block";
+                saveBtn.style.display = "none";
+            } else if (activeTabId === "parents-tab") {
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "inline-block";
+                saveBtn.style.display = "none";
+            } else if (activeTabId === "exams-tab") {
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "none";
+                saveBtn.style.display = "inline-block";
+            }
+        }
 
         // PHOTO UPLOAD TO BASE64
         function previewPhoto(event) {
             let file = event.target.files[0];
             if (file) {
+                let fileNameSpan = document.getElementById("photoFileName");
+                if (fileNameSpan) {
+                    fileNameSpan.innerText = file.name;
+                    fileNameSpan.style.display = "block";
+                }
+
                 let reader = new FileReader();
                 reader.onload = function (e) {
                     currentPhotoBase64 = e.target.result;
@@ -661,16 +1023,22 @@
         // LOAD DIRECTORY
         async function loadStudents() {
             let table = document.getElementById("studentTable");
-            table.innerHTML = "<tr><td colspan='6'>Loading Directory...</td></tr>";
+            table.innerHTML = "<tr><td colspan='7'>Loading Directory...</td></tr>";
 
-            const { data, error } = await _supabase
-                .from('students')
-                .select('*')
-                .order('student_id', { ascending: true });
+            let filter = document.getElementById("statusFilter").value;
+            let query = _supabase.from('students').select('*').order('student_id', { ascending: true });
+
+            if (filter === "Active") {
+                query = query.eq('status', 'Active');
+            } else if (filter === "Inactive") {
+                query = query.eq('status', 'Inactive');
+            }
+
+            const { data, error } = await query;
 
             if (error) {
                 console.error("Error loading student directory:", error);
-                table.innerHTML = "<tr><td colspan='6' class='text-danger'>Error loading directory</td></tr>";
+                table.innerHTML = "<tr><td colspan='7' class='text-danger'>Error loading directory</td></tr>";
                 return;
             }
 
@@ -678,7 +1046,7 @@
             table.innerHTML = "";
 
             if (students.length === 0) {
-                table.innerHTML = "<tr><td colspan='6'>No student records found. Click 'New Admission' to add.</td></tr>";
+                table.innerHTML = `<tr><td colspan='7'>No ${filter !== 'All' ? filter.toLowerCase() + ' ' : ''}student records found.</td></tr>`;
                 return;
             }
 
@@ -690,22 +1058,29 @@
                     avatarHtml = `<div class="student-thumb"><i class="fa-solid fa-user"></i></div>`;
                 }
 
+                let statusBadge = "";
+                if (student.status === "Inactive") {
+                    statusBadge = `<span class="badge bg-danger rounded-pill px-3 py-1.5 fw-semibold" style="font-size:0.8rem;">Inactive</span>`;
+                } else {
+                    statusBadge = `<span class="badge bg-success rounded-pill px-3 py-1.5 fw-semibold" style="font-size:0.8rem;">Active</span>`;
+                }
+
+                let boardText = "";
+                if (student.board === "CBSE") {
+                    boardText = " CBSE";
+                }
+
                 table.innerHTML += `
                 <tr>
                     <td>${avatarHtml}</td>
                     <td>${student.student_id}</td>
-                    <td><strong style="color:#1b2a52;">${student.name}</strong></td>
-                    <td>Class ${student.student_class} (${student.board || 'State Board'})</td>
+                    <td><strong style="color:#1e3c72;">${student.name}</strong></td>
+                    <td>${student.student_class}${boardText}</td>
+                    <td>${statusBadge}</td>
                     <td>${student.phone || ''}</td>
                     <td>
-                        <button class="btn-profile" onclick="viewProfile(${index})">
+                        <button class="btn-profile w-100" onclick="viewProfile(${index})">
                             <i class="fa-solid fa-eye"></i> View
-                        </button>
-                        <button class="btn-update" onclick="editStudent(${index})">
-                            <i class="fa-solid fa-pen"></i> Update
-                        </button>
-                        <button class="btn-delete" onclick="deleteStudent(${index})">
-                            <i class="fa-solid fa-trash"></i> Delete
                         </button>
                     </td>
                 </tr>
@@ -716,97 +1091,67 @@
         // OPEN ADMISSION MODAL
         function openAddModal() {
             isUpdateMode = false;
+            activeStudentExtraSubjects = [];
             document.getElementById("studentForm").reset();
             document.getElementById("studentId").disabled = false;
+            document.getElementById("studentStatus").value = "Active";
             document.getElementById("studentModalLabel").innerHTML = `<i class="fa-solid fa-user-plus me-2"></i>New Student Admission`;
             
             // Clear photo
             currentPhotoBase64 = "";
             document.getElementById("photoPreview").style.display = "none";
             document.getElementById("photoPlaceholder").style.display = "flex";
+            let fileNameSpan = document.getElementById("photoFileName");
+            if (fileNameSpan) {
+                fileNameSpan.innerText = "No file chosen";
+                fileNameSpan.style.display = "none";
+            }
 
             // Set default dates
             let today = new Date().toISOString().split('T')[0];
             document.getElementById("studentJoinDate").value = today;
 
+            // Reset tab selection to first pane
+            let triggerEl = document.querySelector('#admissionTabs button[data-bs-target="#personal-section"]');
+            if (triggerEl) {
+                let tab = bootstrap.Tab.getInstance(triggerEl) || new bootstrap.Tab(triggerEl);
+                tab.show();
+            }
+            updateWizardButtons("personal-tab");
+
+            // Clear and load fallback school exams structure
+            loadStudentSchoolExamsUI();
+
             studentModalInstance.show();
         }
 
-        // SAVE / UPDATE HANDLER
+        // SAVE / UPDATE HANDLER (FINAL SUBMISSION)
         async function saveStudent(event) {
             event.preventDefault();
 
             let id = document.getElementById("studentId").value.trim();
-            let name = document.getElementById("studentName").value.trim();
-            let dob = document.getElementById("studentDob").value;
-            let gender = document.getElementById("studentGender").value;
-            let board = document.getElementById("studentBoard").value;
-            let school = document.getElementById("studentSchool").value.trim();
-            
-            let studentClass = document.getElementById("studentClass").value.trim();
-            let joinDate = document.getElementById("studentJoinDate").value;
-            let fees = Number(document.getElementById("studentFees").value);
-            let advance = Number(document.getElementById("studentAdvance").value);
-            
-            let fatherName = document.getElementById("studentFatherName").value.trim();
-            let fatherOcc = document.getElementById("studentFatherOcc").value.trim();
-            let motherName = document.getElementById("studentMotherName").value.trim();
-            let motherOcc = document.getElementById("studentMotherOcc").value.trim();
-            let phone = document.getElementById("studentPhone").value.trim();
-            let whatsapp = document.getElementById("studentWhatsapp").value.trim();
-            let address = document.getElementById("studentAddress").value.trim();
+            let group = document.getElementById("examConfigGroupSelect").value;
 
-            if (!id || !name || !studentClass) {
-                alert("Please fill all required fields");
+            // Save custom school exams
+            saveStudentSchoolExamsUI();
+
+            // Save academic group & custom extra subjects to student record in DB
+            const { error } = await _supabase
+                .from('students')
+                .update({
+                    academic_group: group,
+                    custom_subjects: activeStudentExtraSubjects
+                })
+                .eq('student_id', id);
+
+            if (error) {
+                alert("Error saving group details: " + error.message);
                 return;
-            }
-
-            let studentData = {
-                student_id: id,
-                name: name,
-                dob: dob,
-                gender: gender,
-                board: board,
-                school_name: school,
-                student_class: studentClass,
-                joining_date: joinDate,
-                monthly_fees: fees,
-                advance_amount: advance,
-                father_name: fatherName,
-                father_occupation: fatherOcc,
-                mother_name: motherName,
-                mother_occupation: motherOcc,
-                phone: phone,
-                whatsapp_number: whatsapp,
-                address: address,
-                photo: currentPhotoBase64
-            };
-
-            if (isUpdateMode) {
-                // Update
-                const { error } = await _supabase
-                    .from('students')
-                    .update(studentData)
-                    .eq('student_id', id);
-
-                if (error) {
-                    alert("Error updating student: " + error.message);
-                    return;
-                }
-            } else {
-                // Insert
-                const { error } = await _supabase
-                    .from('students')
-                    .insert([studentData]);
-
-                if (error) {
-                    alert("Error adding student: " + error.message);
-                    return;
-                }
             }
 
             studentModalInstance.hide();
             loadStudents();
+            alert("Student details saved successfully!");
         }
 
         // EDIT STUDENT (POPULATE MODAL)
@@ -830,6 +1175,7 @@
             document.getElementById("studentJoinDate").value = student.joining_date || '';
             document.getElementById("studentFees").value = student.monthly_fees || 0;
             document.getElementById("studentAdvance").value = student.advance_amount || 0;
+            document.getElementById("studentStatus").value = student.status || 'Active';
             
             document.getElementById("studentFatherName").value = student.father_name || '';
             document.getElementById("studentFatherOcc").value = student.father_occupation || '';
@@ -840,27 +1186,59 @@
             document.getElementById("studentAddress").value = student.address || '';
 
             // Handle Photo
+            let fileNameSpan = document.getElementById("photoFileName");
             if (student.photo) {
                 document.getElementById("photoPreview").src = student.photo;
                 document.getElementById("photoPreview").style.display = "block";
                 document.getElementById("photoPlaceholder").style.display = "none";
                 currentPhotoBase64 = student.photo;
+                if (fileNameSpan) {
+                    fileNameSpan.innerText = "Current Photo Loaded";
+                    fileNameSpan.style.display = "block";
+                }
             } else {
                 document.getElementById("photoPreview").style.display = "none";
                 document.getElementById("photoPlaceholder").style.display = "flex";
                 currentPhotoBase64 = "";
+                if (fileNameSpan) {
+                    fileNameSpan.innerText = "No file chosen";
+                    fileNameSpan.style.display = "none";
+                }
             }
+
+            // Reset tab selection to first pane
+            let triggerEl = document.querySelector('#admissionTabs button[data-bs-target="#personal-section"]');
+            if (triggerEl) {
+                let tab = bootstrap.Tab.getInstance(triggerEl) || new bootstrap.Tab(triggerEl);
+                tab.show();
+            }
+            updateWizardButtons("personal-tab");
+
+            // Load exams list UI for student's school
+            loadStudentSchoolExamsUI();
+
+            activeStudentExtraSubjects = student.custom_subjects || [];
+            let groupSelect = document.getElementById("examConfigGroupSelect");
+            if (groupSelect && student.academic_group) {
+                groupSelect.value = student.academic_group;
+            }
+            verifyGroupSubjects();
 
             studentModalInstance.show();
         }
 
         // VIEW DETAILED PROFILE CARD
         function viewProfile(index) {
+            currentViewingIndex = index;
             let student = students[index];
 
             // Setup profile header
             document.getElementById("viewName").innerText = student.name;
-            document.getElementById("viewClassBadge").innerText = `Class ${student.student_class}`;
+            let profileBoardText = "";
+            if (student.board === "CBSE") {
+                profileBoardText = " CBSE";
+            }
+            document.getElementById("viewClassBadge").innerText = `${student.student_class}${profileBoardText}`;
 
             if (student.photo) {
                 document.getElementById("viewAvatarImg").src = student.photo;
@@ -891,25 +1269,411 @@
             document.getElementById("viewWhatsapp").innerText = student.whatsapp_number || 'N/A';
             document.getElementById("viewAddress").innerText = student.address || 'N/A';
 
+            // Configure status toggle button state
+            let statusBtn = document.getElementById("profileToggleStatusBtn");
+            if (student.status === "Inactive") {
+                statusBtn.innerHTML = `<i class="fa-solid fa-user-check me-2"></i>Activate`;
+                statusBtn.className = "btn btn-success flex-grow-1 fw-bold text-white";
+            } else {
+                statusBtn.innerHTML = `<i class="fa-solid fa-user-slash me-2"></i>Deactivate`;
+                statusBtn.className = "btn btn-danger flex-grow-1 fw-bold text-white";
+            }
+
             profileModalInstance.show();
         }
 
-        // DELETE student
-        async function deleteStudent(index) {
+        // TRIGGER EDIT FROM PROFILE VIEW
+        function editFromProfileViewer() {
+            profileModalInstance.hide();
+            if (currentViewingIndex >= 0) {
+                // Since bootstrap animation has transition, small timeout avoids visual glitches
+                setTimeout(() => {
+                    editStudent(currentViewingIndex);
+                }, 400);
+            }
+        }
+
+        // TRIGGER STATUS TOGGLE FROM PROFILE VIEW
+        function toggleStatusFromProfileViewer() {
+            profileModalInstance.hide();
+            if (currentViewingIndex >= 0) {
+                setTimeout(async () => {
+                    await toggleStudentStatus(currentViewingIndex);
+                }, 400);
+            }
+        }
+
+        // TOGGLE STUDENT ACTIVE STATUS
+        async function toggleStudentStatus(index) {
             let student = students[index];
-            if (confirm(`Are you absolutely sure you want to delete ${student.name} (ID: ${student.student_id})?\nThis will remove all their records.`)) {
+            let newStatus = student.status === "Inactive" ? "Active" : "Inactive";
+            let confirmMsg = `Are you sure you want to activate ${student.name}?`;
+            if (newStatus === "Inactive") {
+                confirmMsg = `Are you sure you want to deactivate ${student.name}?\nThey will be excluded from daily attendance logs.`;
+            }
+
+            if (confirm(confirmMsg)) {
                 const { error } = await _supabase
                     .from('students')
-                    .delete()
+                    .update({ status: newStatus })
                     .eq('student_id', student.student_id);
 
                 if (error) {
-                    alert("Error deleting student record: " + error.message);
+                    alert("Error updating status: " + error.message);
                     return;
                 }
 
                 loadStudents();
             }
+        }
+
+        // DYNAMIC EXAM STRUCTURE INTEGRATION
+        function loadStudentSchoolExamsUI() {
+            populateAcademicGroupsSelect();
+
+            let schoolInput = document.getElementById("studentSchool");
+            let school = schoolInput ? schoolInput.value.trim() : "";
+            if (!school) {
+                school = "Default";
+            }
+
+            // Sync active school name label
+            let schoolDisplay = document.getElementById("examConfigSchoolName");
+            if (schoolDisplay) {
+                schoolDisplay.innerText = school;
+            }
+
+            // Auto-check class name from academic tab to preset group selection default
+            let classInput = document.getElementById("studentClass");
+            let cls = classInput ? classInput.value.trim() : "";
+            let groupSelect = document.getElementById("examConfigGroupSelect");
+            if (groupSelect) {
+                if (cls === "11" || cls === "12") {
+                    if (groupSelect.value === "Class 10 & below") {
+                        groupSelect.value = "Bio Maths";
+                    }
+                } else if (cls !== "") {
+                    groupSelect.value = "Class 10 & below";
+                }
+                verifyGroupSubjects();
+            }
+
+            let config = getSchoolStructure(school);
+            let list = document.getElementById("admissionConfigExamsList");
+            if (!list) return;
+            list.innerHTML = "";
+            
+            config.exams.forEach((exam, idx) => {
+                list.innerHTML += `
+                    <tr>
+                        <td><input type="text" class="form-control admission-exam-name" value="${exam.name}" required></td>
+                        <td><input type="number" class="form-control admission-exam-marks" value="${exam.totalMarks}" min="1" required></td>
+                        <td>
+                            <div class="btn-group gap-1">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveAdmissionExamRow(${idx}, -1)" title="Move Up">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveAdmissionExamRow(${idx}, 1)" title="Move Down">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteAdmissionExamRow(${idx})" title="Delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function deleteAdmissionExamRow(idx) {
+            let rows = document.querySelectorAll("#admissionConfigExamsList tr");
+            if (rows[idx]) {
+                rows[idx].remove();
+                rebuildAdmissionExamIndices();
+            }
+        }
+
+        function rebuildAdmissionExamIndices() {
+            let rows = document.querySelectorAll("#admissionConfigExamsList tr");
+            rows.forEach((row, idx) => {
+                let buttons = row.querySelectorAll("button");
+                if (buttons.length >= 3) {
+                    buttons[0].setAttribute("onclick", `moveAdmissionExamRow(${idx}, -1)`);
+                    buttons[1].setAttribute("onclick", `moveAdmissionExamRow(${idx}, 1)`);
+                    buttons[2].setAttribute("onclick", `deleteAdmissionExamRow(${idx})`);
+                }
+            });
+        }
+
+        function addAdmissionExamRow() {
+            let list = document.getElementById("admissionConfigExamsList");
+            if (!list) return;
+            let rowCount = list.querySelectorAll("tr").length;
+            list.innerHTML += `
+                <tr>
+                    <td><input type="text" class="form-control admission-exam-name" placeholder="e.g. Monthly Test" required></td>
+                    <td><input type="number" class="form-control admission-exam-marks" value="100" min="1" required></td>
+                    <td>
+                        <div class="btn-group gap-1">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveAdmissionExamRow(${rowCount}, -1)" title="Move Up">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="moveAdmissionExamRow(${rowCount}, 1)" title="Move Down">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteAdmissionExamRow(${rowCount})" title="Delete">
+                                    <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function moveAdmissionExamRow(idx, direction) {
+            let list = document.getElementById("admissionConfigExamsList");
+            let rows = Array.from(list.querySelectorAll("tr"));
+            let targetIdx = idx + direction;
+            if (targetIdx < 0 || targetIdx >= rows.length) return;
+            
+            let rowA = rows[idx];
+            let rowB = rows[targetIdx];
+            
+            let nameA = rowA.querySelector(".admission-exam-name").value;
+            let marksA = rowA.querySelector(".admission-exam-marks").value;
+            
+            let nameB = rowB.querySelector(".admission-exam-name").value;
+            let marksB = rowB.querySelector(".admission-exam-marks").value;
+            
+            rowA.querySelector(".admission-exam-name").value = nameB;
+            rowA.querySelector(".admission-exam-marks").value = marksB;
+            
+            rowB.querySelector(".admission-exam-name").value = nameA;
+            rowB.querySelector(".admission-exam-marks").value = marksA;
+        }
+
+        function saveStudentSchoolExamsUI() {
+            let schoolInput = document.getElementById("studentSchool");
+            let school = schoolInput ? schoolInput.value.trim() : "";
+            if (!school) return;
+            
+            let structures = getSchoolStructures();
+            let rows = document.querySelectorAll("#admissionConfigExamsList tr");
+            let exams = [];
+            let isValid = true;
+            
+            rows.forEach(row => {
+                let nameInput = row.querySelector(".admission-exam-name");
+                let marksInput = row.querySelector(".admission-exam-marks");
+                
+                let name = nameInput.value.trim();
+                let marks = parseInt(marksInput.value);
+                
+                if (!name || isNaN(marks) || marks <= 0) {
+                    isValid = false;
+                } else {
+                    exams.push({ name: name, totalMarks: marks });
+                }
+            });
+            
+            if (isValid && exams.length > 0) {
+                structures[school] = { exams: exams };
+                saveSchoolStructures(structures);
+            }
+        }
+
+        // POPULATE ACADEMIC GROUPS
+        function populateAcademicGroupsSelect(selectedValue = "") {
+            let select = document.getElementById("examConfigGroupSelect");
+            if (!select) return;
+            
+            // Remember current selected if none specified
+            if (!selectedValue) {
+                selectedValue = select.value;
+            }
+            
+            select.innerHTML = "";
+            let groups = getAcademicGroups();
+            
+            for (let groupName in groups) {
+                select.innerHTML += `<option value="${groupName}">${groupName}</option>`;
+            }
+            
+            if (selectedValue && groups[selectedValue]) {
+                select.value = selectedValue;
+            } else {
+                select.selectedIndex = 0;
+            }
+            
+            verifyGroupSubjects();
+        }
+
+        // VERIFY GROUP SUBJECTS LAYOUT
+        function verifyGroupSubjects() {
+            let selectEl = document.getElementById("examConfigGroupSelect");
+            if (!selectEl) return;
+            let group = selectEl.value;
+            let subjectsList = document.getElementById("examConfigSubjectsList");
+            if (!subjectsList) return;
+            subjectsList.innerHTML = "";
+            
+            let groups = getAcademicGroups();
+            let subjects = groups[group] || [];
+            
+            // CBSE Auto-filtering: Exclude Tamil for CBSE Class 11 and 12
+            let boardSelect = document.getElementById("studentBoard");
+            let classInput = document.getElementById("studentClass");
+            let board = boardSelect ? boardSelect.value : "";
+            let cls = classInput ? classInput.value.trim() : "";
+            
+            if (board === "CBSE" && (cls === "11" || cls === "12")) {
+                subjects = subjects.filter(sub => sub !== "Tamil");
+            }
+            
+            subjects.forEach(sub => {
+                subjectsList.innerHTML += `<span class="badge bg-secondary text-white rounded-pill px-3 py-2 fw-semibold" style="font-size:0.85rem; background: #475569 !important;"><i class="fa-solid fa-check me-1.5"></i>${sub}</span>`;
+            });
+
+            // Display active student's extra subjects (if any)
+            if (activeStudentExtraSubjects && activeStudentExtraSubjects.length > 0) {
+                activeStudentExtraSubjects.forEach((sub, idx) => {
+                    subjectsList.innerHTML += `
+                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2 fw-semibold d-inline-flex align-items-center gap-1.5" style="font-size:0.85rem; background: #fef08a !important; color: #854d0e !important; border: 1px solid #fde047;">
+                            <i class="fa-solid fa-star text-warning"></i> ${sub}
+                            <i class="fa-solid fa-circle-xmark ms-1 text-danger" style="cursor:pointer;" onclick="removeExtraSubject(${idx})"></i>
+                        </span>
+                    `;
+                });
+            }
+        }
+
+        // EXTRA SUBJECT CONTROLLERS
+        function toggleAddExtraSubjectInput(show) {
+            let section = document.getElementById("addExtraSubjectSection");
+            if (!section) return;
+            section.style.display = show ? "flex" : "none";
+            if (show) {
+                let input = document.getElementById("extraSubjectInput");
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        function handleExtraSubjectKey(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addExtraSubjectToStudent();
+            }
+        }
+
+        function addExtraSubjectToStudent() {
+            let input = document.getElementById("extraSubjectInput");
+            if (!input) return;
+            let sub = input.value.trim();
+            if (!sub) return;
+            
+            sub = sub.charAt(0).toUpperCase() + sub.slice(1);
+            
+            if (!activeStudentExtraSubjects.includes(sub)) {
+                activeStudentExtraSubjects.push(sub);
+                verifyGroupSubjects();
+            }
+            
+            input.value = "";
+            toggleAddExtraSubjectInput(false);
+        }
+
+        function removeExtraSubject(idx) {
+            activeStudentExtraSubjects.splice(idx, 1);
+            verifyGroupSubjects();
+        }
+
+        // CREATE CUSTOM GROUP CONTROLLERS
+        let customGroupSubjects = [];
+
+        function toggleCreateGroupForm(show) {
+            let form = document.getElementById("createCustomGroupForm");
+            if (!form) return;
+            form.style.display = show ? "block" : "none";
+            
+            if (show) {
+                document.getElementById("customGroupNameInput").value = "";
+                document.getElementById("customSubjectNameInput").value = "";
+                customGroupSubjects = [];
+                renderCustomGroupSubjectsPreview();
+            }
+        }
+
+        function handleCustomSubjectKey(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addSubjectToCustomList();
+            }
+        }
+
+        function addSubjectToCustomList() {
+            let input = document.getElementById("customSubjectNameInput");
+            if (!input) return;
+            let sub = input.value.trim();
+            if (!sub) return;
+            
+            sub = sub.charAt(0).toUpperCase() + sub.slice(1);
+            
+            if (!customGroupSubjects.includes(sub)) {
+                customGroupSubjects.push(sub);
+                renderCustomGroupSubjectsPreview();
+            }
+            input.value = "";
+            input.focus();
+        }
+
+        function removeSubjectFromCustomList(idx) {
+            customGroupSubjects.splice(idx, 1);
+            renderCustomGroupSubjectsPreview();
+        }
+
+        function renderCustomGroupSubjectsPreview() {
+            let container = document.getElementById("customGroupSubjectsPreview");
+            if (!container) return;
+            
+            if (customGroupSubjects.length === 0) {
+                container.innerHTML = `<span class="text-muted small italic">No subjects added yet. Type and press "+" to add.</span>`;
+                return;
+            }
+            
+            container.innerHTML = "";
+            customGroupSubjects.forEach((sub, idx) => {
+                container.innerHTML += `
+                    <span class="badge bg-primary text-white rounded-pill px-3 py-2 fw-semibold d-inline-flex align-items-center gap-1.5" style="font-size:0.85rem; background:#1b2a52 !important; box-shadow: 0 2px 5px rgba(27, 42, 82, 0.15);">
+                        ${sub}
+                        <i class="fa-solid fa-circle-xmark text-white ms-1" style="cursor:pointer; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8" onclick="removeSubjectFromCustomList(${idx})"></i>
+                    </span>
+                `;
+            });
+        }
+
+        function saveCustomGroup() {
+            let nameInput = document.getElementById("customGroupNameInput");
+            let name = nameInput ? nameInput.value.trim() : "";
+            if (!name) {
+                alert("Please enter a valid Group Name.");
+                return;
+            }
+            
+            if (customGroupSubjects.length === 0) {
+                alert("Please add at least one subject to this group.");
+                return;
+            }
+            
+            let groups = getAcademicGroups();
+            groups[name] = [...customGroupSubjects];
+            saveAcademicGroups(groups);
+            
+            populateAcademicGroupsSelect(name);
+            toggleCreateGroupForm(false);
+            
+            alert(`Custom group "${name}" created and loaded successfully!`);
         }
     </script>
 
