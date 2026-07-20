@@ -517,6 +517,12 @@ function fillStudentData(){
     let examSelect = document.getElementById("examType");
 
     if(index == ""){
+        document.getElementById("studentName").value = "";
+        document.getElementById("studentClass").value = "";
+        let groupSelect = document.getElementById("groupSelect");
+        if (groupSelect) groupSelect.value = "";
+        document.getElementById("groupBox").style.display = "none";
+        currentActiveStudent = null;
         // Reset to generic defaults
         examSelect.innerHTML = `
             <option value="">Select Exam</option>
@@ -574,7 +580,24 @@ function fillStudentData(){
         document.getElementById("groupBox").style.display = "flex";
         let groupSelect = document.getElementById("groupSelect");
         if (groupSelect) {
-            groupSelect.value = student.academic_group || "";
+            let stdGroup = (student.academic_group || student.group || student.stream || "").toString().trim();
+            let matchedIndex = -1;
+            
+            if (stdGroup) {
+                for (let i = 0; i < groupSelect.options.length; i++) {
+                    if (groupSelect.options[i].value.trim().toLowerCase() === stdGroup.toLowerCase()) {
+                        matchedIndex = i;
+                        break;
+                    }
+                }
+            }
+            
+            if (matchedIndex !== -1) {
+                groupSelect.selectedIndex = matchedIndex;
+            } else if (groupSelect.options.length > 1) {
+                // Default to first actual group option if student group not specified
+                groupSelect.selectedIndex = 1;
+            }
         }
         loadSubjects();
     }
