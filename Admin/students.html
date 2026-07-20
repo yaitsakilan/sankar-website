@@ -805,94 +805,126 @@
                                 </div>
                             </div>
                             
-                            <!-- Right Column: Full Details -->
+                            <!-- Right Column: Details & Academic Marks Tabs -->
                             <div class="col-md-8">
-                                <h6 class="form-section-title fs-6 mb-2"><i class="fa-solid fa-user-tag me-2"></i>Admission Metadata</h6>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Student ID</span>
-                                            <span class="profile-value" id="viewId">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Board</span>
-                                            <span class="profile-value" id="viewBoard">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">School</span>
-                                            <span class="profile-value" id="viewSchool">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Joining Date</span>
-                                            <span class="profile-value" id="viewJoinDate">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Date of Birth</span>
-                                            <span class="profile-value" id="viewDob">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Gender</span>
-                                            <span class="profile-value" id="viewGender">-</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul class="nav nav-tabs nav-fill mb-3" id="profileViewerTabs" role="tablist" style="border-bottom: 2px solid #e2e8f0;">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active fw-bold py-2.5" id="viewDetailsTab" data-bs-toggle="tab" data-bs-target="#viewDetailsPane" type="button" role="tab" aria-controls="viewDetailsPane" aria-selected="true" style="border-radius: 10px 10px 0 0;">
+                                            <i class="fa-solid fa-id-card me-2"></i>Admission & Personal Details
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link fw-bold py-2.5" id="viewMarksTab" data-bs-toggle="tab" data-bs-target="#viewMarksPane" type="button" role="tab" aria-controls="viewMarksPane" aria-selected="false" style="border-radius: 10px 10px 0 0;">
+                                            <i class="fa-solid fa-star me-2 text-warning"></i>Academic Marks History
+                                        </button>
+                                    </li>
+                                </ul>
 
-                                <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-people-roof me-2"></i>Parent Details</h6>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Father</span>
-                                            <span class="profile-value" id="viewFatherName">-</span>
+                                <div class="tab-content" id="profileViewerTabsContent">
+                                    <!-- TAB 1: ADMISSION & PERSONAL DETAILS -->
+                                    <div class="tab-pane fade show active" id="viewDetailsPane" role="tabpanel" aria-labelledby="viewDetailsTab">
+                                        <h6 class="form-section-title fs-6 mb-2"><i class="fa-solid fa-user-tag me-2"></i>Admission Metadata</h6>
+                                        <div class="row mb-3">
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Student ID</span>
+                                                    <span class="profile-value" id="viewId">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Board</span>
+                                                    <span class="profile-value" id="viewBoard">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">School</span>
+                                                    <span class="profile-value" id="viewSchool">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Academic Group</span>
+                                                    <span class="profile-value fw-semibold text-primary" id="viewGroup">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Joining Date</span>
+                                                    <span class="profile-value" id="viewJoinDate">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Date of Birth</span>
+                                                    <span class="profile-value" id="viewDob">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Gender</span>
+                                                    <span class="profile-value" id="viewGender">-</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Occupation</span>
-                                            <span class="profile-value" id="viewFatherOcc">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Mother</span>
-                                            <span class="profile-value" id="viewMotherName">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Occupation</span>
-                                            <span class="profile-value" id="viewMotherOcc">-</span>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-map-location-dot me-2"></i>Contact Details</h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">Phone</span>
-                                            <span class="profile-value" id="viewPhone">-</span>
+                                        <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-people-roof me-2"></i>Parent Details</h6>
+                                        <div class="row mb-3">
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Father</span>
+                                                    <span class="profile-value" id="viewFatherName">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Occupation</span>
+                                                    <span class="profile-value" id="viewFatherOcc">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Mother</span>
+                                                    <span class="profile-value" id="viewMotherName">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Occupation</span>
+                                                    <span class="profile-value" id="viewMotherOcc">-</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="form-section-title fs-6 mb-2 mt-2"><i class="fa-solid fa-map-location-dot me-2"></i>Contact Details</h6>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">Phone</span>
+                                                    <span class="profile-value" id="viewPhone">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="profile-detail-row">
+                                                    <span class="profile-label">WhatsApp</span>
+                                                    <span class="profile-value" id="viewWhatsapp">-</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="profile-detail-row border-0 pb-0">
+                                                    <span class="profile-label align-self-start">Address</span>
+                                                    <span class="profile-value text-start" id="viewAddress" style="max-width: 75%; word-break: break-word;">-</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="profile-detail-row">
-                                            <span class="profile-label">WhatsApp</span>
-                                            <span class="profile-value" id="viewWhatsapp">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="profile-detail-row border-0 pb-0">
-                                            <span class="profile-label align-self-start">Address</span>
-                                            <span class="profile-value text-start" id="viewAddress" style="max-width: 75%; word-break: break-word;">-</span>
+
+                                    <!-- TAB 2: ACADEMIC MARKS HISTORY -->
+                                    <div class="tab-pane fade" id="viewMarksPane" role="tabpanel" aria-labelledby="viewMarksTab">
+                                        <h6 class="form-section-title fs-6 mb-3"><i class="fa-solid fa-square-poll-vertical me-2"></i>Exam Performance & Logged Marks</h6>
+                                        <div id="profileMarksListContainer">
+                                            <!-- Dynamically populated from Supabase marks table -->
                                         </div>
                                     </div>
                                 </div>
@@ -1253,6 +1285,7 @@
             document.getElementById("viewId").innerText = student.student_id;
             document.getElementById("viewBoard").innerText = student.board || 'State Board';
             document.getElementById("viewSchool").innerText = student.school_name || 'N/A';
+            document.getElementById("viewGroup").innerText = student.academic_group || 'Class 10 & below';
             document.getElementById("viewJoinDate").innerText = student.joining_date || 'N/A';
             document.getElementById("viewDob").innerText = student.dob || 'N/A';
             document.getElementById("viewGender").innerText = student.gender || 'Male';
@@ -1279,7 +1312,102 @@
                 statusBtn.className = "btn btn-danger flex-grow-1 fw-bold text-white";
             }
 
+            // Reset tab selection to first tab
+            let triggerTab = document.getElementById("viewDetailsTab");
+            if (triggerTab) {
+                let tab = bootstrap.Tab.getInstance(triggerTab) || new bootstrap.Tab(triggerTab);
+                tab.show();
+            }
+
+            // Load student marks separately in Academic Marks History tab
+            loadStudentMarksInProfile(student.student_id);
+
             profileModalInstance.show();
+        }
+
+        // LOAD STUDENT MARKS SEPARATELY IN PROFILE VIEWER
+        async function loadStudentMarksInProfile(studentId) {
+            let container = document.getElementById("profileMarksListContainer");
+            if (!container) return;
+            container.innerHTML = `<div class="text-center py-4 text-muted"><i class="fa-solid fa-spinner fa-spin me-2"></i>Loading student marks from database...</div>`;
+
+            try {
+                const { data, error } = await _supabase
+                    .from('marks')
+                    .select('*')
+                    .eq('student_id', studentId)
+                    .order('id', { ascending: false });
+
+                if (error) {
+                    console.error("Error fetching student marks:", error);
+                    container.innerHTML = `<div class="alert alert-danger py-2 px-3 small"><i class="fa-solid fa-triangle-exclamation me-2"></i>Failed to fetch marks: ${error.message}</div>`;
+                    return;
+                }
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-clipboard-list fs-1 mb-2 text-secondary" style="opacity:0.4;"></i>
+                            <p class="m-0 fw-semibold">No exam marks logged yet for this student.</p>
+                            <small class="text-muted">You can add marks from the <strong>Marks Log</strong> page.</small>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = `
+                    <div class="table-responsive" style="border-radius: 12px; border: 1px solid #e2e8f0; max-height: 350px; overflow-y: auto;">
+                        <table class="table table-hover align-middle text-center mb-0">
+                            <thead class="table-light sticky-top" style="background:#f8fafc;">
+                                <tr>
+                                    <th class="py-2.5 fs-7">Exam Name</th>
+                                    <th class="py-2.5 fs-7">Date</th>
+                                    <th class="py-2.5 fs-7 text-start">Subject Marks</th>
+                                    <th class="py-2.5 fs-7">Total</th>
+                                    <th class="py-2.5 fs-7">Average / %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                data.forEach(item => {
+                    let subjectText = "";
+                    let maxMarks = (item.subjects && item.subjects._max_marks) ? item.subjects._max_marks : 100;
+                    let count = 0;
+
+                    for (let key in item.subjects) {
+                        if (key.startsWith("_")) continue;
+                        count++;
+                        subjectText += `<span class="badge bg-light text-dark border me-1 mb-1 px-2 py-1 fs-8">${key}: <strong>${item.subjects[key]}</strong></span> `;
+                    }
+
+                    let maxTotal = count * maxMarks;
+                    let percentage = maxTotal > 0 ? ((item.total / maxTotal) * 100).toFixed(1) : 0;
+                    let totalDisplay = `${item.total} / ${maxTotal}`;
+                    let avgDisplay = `${item.average} (${percentage}%)`;
+
+                    html += `
+                        <tr>
+                            <td class="fw-bold text-primary">${item.exam}</td>
+                            <td class="text-muted small">${item.date || '-'}</td>
+                            <td class="text-start">${subjectText}</td>
+                            <td><span class="badge rounded-pill px-2.5 py-1.5 fs-7" style="background:#eef5ff; color:#1e3c72; border:1px solid #cbd5e1;">${totalDisplay}</span></td>
+                            <td><span class="fw-bold text-success">${avgDisplay}</span></td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+            } catch (err) {
+                console.error("Error loading marks in profile viewer:", err);
+                container.innerHTML = `<div class="alert alert-danger py-2 px-3 small">Error fetching marks data.</div>`;
+            }
         }
 
         // TRIGGER EDIT FROM PROFILE VIEW
